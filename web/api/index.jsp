@@ -59,6 +59,23 @@
          Neue Funktionen hier anfügen.
         -->
         <hr>
+        <br></br>
+        <!--CONFIGURE_REPOSITORY_VERSION:2.3.131116-->
+        Modul: <i><b>Konfiguration Repository</b></i><br>
+        Version: <i><b>2.3.131116</b></i><br>
+        Comments: -
+        <br></br>
+        Format: <i><b>JSON</b></i><br>
+        <font size=2>Query:<br>
+        <ul>
+            <li><b>MailApiIsAlreadyConfigured</b> - Get configuration for Java Mail Api and check ifs already configured URL: <a href="/installer/exec/MailApiIsAlreadyConfigured">/installer/exec/MailApiIsAlreadyConfigured</a></li>
+            <li><b>ConfigureMailApi</b> - Set configuration for Java Mail Api URL: <a href="/installer/exec/ConfigureMailApi?host=&port=&user=&pass=">/installer/exec/ConfigureMailApi?host=&port=&user=&pass=</a></li>
+            <li><b>AdminUserIsAlreadyConfigured</b> - Get configured Admin User URL: <a href="/installer/exec/AdminUserIsAlreadyConfigured">/installer/exec/AdminUserIsAlreadyConfigured</a></li>
+            <li><b>CreateAdminUser</b> - Set Admin User URL: <a href="/installer/exec/CreateAdminUser?sn=&ln=">/installer/exec/CreateAdminUser?sn=&ln=</a></li>
+        </ul>
+        </font>
+        <br></br>
+        <hr>
         <center><font size="1"><b>SIV.AG 2013</b></font></center>
     </body>
 </html>

@@ -5,7 +5,7 @@
 package de.siv.ksc.webinstaller;
 
 import de.siv.ksc.modules.Basics;
-import de.siv.ksc.profiles.*;
+import de.siv.ksc.profiles.Functions;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -23,7 +23,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author sbaresel
  */
-public class PrepareRepository extends HttpServlet {
+public class ConfigureMailApi extends HttpServlet {
     Properties props = null;
     
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
@@ -40,20 +40,20 @@ public class PrepareRepository extends HttpServlet {
              */
             boolean ctsSuccess = true;
             try {
-                Functions.CreateTableStructure();
+                Functions.ConfigureMailApi(request.getParameter("host"),request.getParameter("port"),request.getParameter("user"),request.getParameter("pass"));
             } catch(SQLException ex) {
                 ctsSuccess = false;
                 out.println("{\"EXIT\":\"1\",\"MESSAGE\":\"ERROR - " + Basics.encodeHtml(ex.toString()) + "\"}");
-                Logger.getLogger(PrepareRepository.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(ConfigureMailApi.class.getName()).log(Level.SEVERE, null, ex);
             } finally {
                 if (ctsSuccess) {
                     out.println("{\"EXIT\":\"0\",\"MESSAGE\":\"OK\"}");
                 }
             }
         } catch (FileNotFoundException ex) {
-            Logger.getLogger(PrepareRepository.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ConfigureMailApi.class.getName()).log(Level.SEVERE, null, ex);
         } catch (NamingException ex) {
-            Logger.getLogger(PrepareRepository.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ConfigureMailApi.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
     

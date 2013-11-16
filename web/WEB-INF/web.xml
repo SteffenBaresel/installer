@@ -88,6 +88,30 @@
         <servlet-name>AdminUser</servlet-name>
         <url-pattern>/exec/AdminUser</url-pattern>
     </servlet-mapping>
+    <servlet>
+        <servlet-name>ConfigureMailApi</servlet-name>
+        <servlet-class>de.siv.ksc.webinstaller.ConfigureMailApi</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ConfigureMailApi</servlet-name>
+        <url-pattern>/exec/ConfigureMailApi</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>MailApiIsAlreadyConfigured</servlet-name>
+        <servlet-class>de.siv.ksc.webinstaller.MailApiIsAlreadyConfigured</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>MailApiIsAlreadyConfigured</servlet-name>
+        <url-pattern>/exec/MailApiIsAlreadyConfigured</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>AdminUserIsAlreadyConfigured</servlet-name>
+        <servlet-class>de.siv.ksc.webinstaller.AdminUserIsAlreadyConfigured</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>AdminUserIsAlreadyConfigured</servlet-name>
+        <url-pattern>/exec/AdminUserIsAlreadyConfigured</url-pattern>
+    </servlet-mapping>
     <!--
             Datasource
     -->

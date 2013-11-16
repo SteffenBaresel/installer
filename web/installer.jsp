@@ -36,19 +36,16 @@
             body a { text-decoration: none; color: #004279; font-size: 12px;}
             #menu { width: 825px; height: 25px; text-align: center; vertical-align: middle; color: #004279; }
             
-            button#Start { position: absolute; margin-left: 500px; margin-top: -60px; }
-            button#Abbrechen { position: absolute; margin-left: 567px; margin-top: -60px; }
+            button#Start { position: absolute; margin-left: 500px; margin-top: -52px; }
+            button#Abbrechen { position: absolute; margin-left: 567px; margin-top: -52px; }
             #ShowStatus, #Installer { display: none; }
-            #AdminUser { padding: 10px; }
+            #AdminUser { height: 100px; padding: 10px; }
             #AdminUser div#AdminUserHeader { margin-top: -22px; background-color: #004279; border: 1px solid #FF6969; padding: 5px; font-size: 12px; margin-bottom: 20px; text-align: center;}
-            #AdminUser table { margin-left: 30px; }
-            #AdminUser table td:first-child { font-size: 12px; text-align: right; }
-            #AdminUser input { width: 200px; border: 1px solid #82abcc; background-color: #004279; color: #fff; padding: 5px;}
             #Output { position: absolute; width: 790px; height: 325px; border: 1px solid #82abcc; top: 420px;left: 25px; background-color: #004c8a; overflow-y: scroll; display: none; }
             #ProgressBar .ui-progressbar-value { background-color: #82abcc; }
-            #ProgressBar { display: none; width: 500px; border: 1px solid #82abcc; position: absolute; left: 150px; margin-top: 15px; height: 15px; padding: 2px; }
-            #n { display: none; position: absolute; left: 130px; font-size: 12px; color: #82abcc; margin-top: 17px; }
-            #h { display: none; position: absolute; left: 660px; font-size: 12px; color: #82abcc; margin-top: 17px; }
+            #ProgressBar { display: none; width: 500px; border: 1px solid #82abcc; position: absolute; left: 150px; margin-top: 23px; height: 15px; padding: 2px; }
+            #n { display: none; position: absolute; left: 130px; font-size: 12px; color: #82abcc; margin-top: 25px; }
+            #h { display: none; position: absolute; left: 660px; font-size: 12px; color: #82abcc; margin-top: 25px; }
             #OutputTable { width: 100%; font-size: 14px; table-layout: fixed; border-spacing:0; border-collapse:collapse; }
             #OutputTable td:first-child { width: 200px; text-align: left; }
             #OutputTable td:last-child { text-align: right; }
@@ -71,25 +68,21 @@
                 <img src="layout/images/logo_backgroundblue_whitetext.png" />
                 <h2>WebInstaller</h2>
                 <h4>f&uuml;r kVASy&reg; System Control<font color="#82abcc"> - Version 2 Update 3</font></h4>
-                <p>Dieser WebInstaller installiert und konfiguriert Basis Einstellungen f&uuml;r das kVASy&reg; System Control in der <br>Version 2 Update 3.
+                <p>Dieser WebInstaller installiert Basis Einstellungen f&uuml;r das kVASy&reg; System Control in der <br>Version 2 Update 3.
                 Durch dr&uuml;cken auf den Start Button werden die notwendigen Prozesse im Hintergrund <br>gestartet und &uuml;berwacht.
                 Eventuelle Fehler werden direkt in der GUI angezeigt.</p>
                 <button id="StartF" onclick="WebInstaller('StartF');">Start</button>
             </div>
             <div id="Installer">
                 <div id="AdminUser">
-                <div id="AdminUserHeader">Bitte tragen Sie hier einen Admin Nutzer ein. Dieser ist der Nutzer der alle Berechtigungen in der Anwendung hat und andere Nutzer hinzuf&uuml;gen kann. Diese Angabe muss gemacht werden.</div>
-                    <table>
-                        <tr><td>Admin Username:</td><td><input id="un" type="text" value="mmustermann" onclick="javascript:eraseText('un');"/></td></tr>
-                        <tr><td>Admin Fullname:</td><td><input id="nm" type="text" value="Max Mustermann" onclick="javascript:eraseText('nm');"/></td></tr>
-                    </table>
+                    <div id="AdminUserHeader">Die SQL Datasource wird jetzt f&uuml;r den Betrieb von kVASy&reg; System Control vorbereitet.</div>
                 </div>
                 <div id="n">0%</div><div id="ProgressBar"></div><div id="h">100%</div>
                 <div id="Output"><table id="OutputTable"></table></div>
-                <button id="Start" onclick="execInstaller('un','nm');">Start</button><button id="Abbrechen" onclick="javascript:location.reload();">Abbrechen</button>
+                <button id="Start" onclick="execInstaller();">Start</button><button id="Abbrechen" onclick="javascript:location.reload();">Abbrechen</button>
             </div>
             <div id="Footer"><p>2013</p></div>
         </div>
-        <div id="menu"><a href="/installer/">Software Manager</a></div>
+        <div id="menu"><a href="/installer/">WebManager</a></div>
     </body>
 </html>

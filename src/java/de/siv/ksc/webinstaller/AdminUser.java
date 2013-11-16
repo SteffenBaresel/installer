@@ -4,6 +4,7 @@
  */
 package de.siv.ksc.webinstaller;
 
+import de.siv.ksc.modules.Basics;
 import de.siv.ksc.profiles.Functions;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -42,7 +43,7 @@ public class AdminUser extends HttpServlet {
                 Functions.CreateAdminUser(ShortName,LongName);
             } catch(SQLException ex) {
                 ctsSuccess = false;
-                out.println("{\"EXIT\":\"1\",\"MESSAGE\":\"ERROR - " + ex + "\"}");
+                out.println("{\"EXIT\":\"1\",\"MESSAGE\":\"ERROR - " + Basics.encodeHtml(ex.toString()) + "\"}");
                 Logger.getLogger(PrepareRepository.class.getName()).log(Level.SEVERE, null, ex);
             } finally {
                 if (ctsSuccess) {

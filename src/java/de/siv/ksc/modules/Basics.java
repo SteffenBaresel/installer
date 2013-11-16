@@ -35,7 +35,7 @@ public class Basics {
      * @return
      */
     static public String encodeHtml(String desc) {
-        String replace = desc.replace("\\303\\234", "&Uuml;").replace("\\303\\274", "&uuml;");
+        String replace = desc.replace("\\303\\234", "&Uuml;").replace("\\303\\274", "&uuml;").replaceAll("[\n\r]", "");
         return replace;
     }
 }

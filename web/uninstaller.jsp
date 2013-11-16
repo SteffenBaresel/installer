@@ -82,6 +82,6 @@
             </div>
             <div id="Footer"><p>2013</p></div>
         </div>
-        <div id="menu"><a href="/installer/">Software Manager</a></div>
+        <div id="menu"><a href="/installer/">WebManager</a></div>
     </body>
 </html>

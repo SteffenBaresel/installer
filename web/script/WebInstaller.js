@@ -39,39 +39,19 @@ function eraseText(id) {
 
 function execInstaller(id1,id2) {
     // Check Input Username
-    if ( document.getElementById(id1).value == "" ) {
-        document.getElementById(id1).style.color="#FF6969";
-        alert("Der Nutzername ist nicht korrekt eingetragen.");
-    } else if ( document.getElementById(id1).value == "mmustermann" ) {
-        document.getElementById(id1).style.color="#FF6969";
-        alert("Der Nutzername ist nicht korrekt eingetragen.");
-    } else {
-        // Check Input Name
-        if ( document.getElementById(id2).value == "" ) {
-            document.getElementById(id2).style.color="#FF6969";
-            alert("Der Name ist nicht korrekt eingetragen.");
-        } else if ( document.getElementById(id2).value == "Max Mustermann" ) {
-            document.getElementById(id2).style.color="#FF6969";
-            alert("Der Name ist nicht korrekt eingetragen.");
-        } else {
-            $('#AdminUserHeader').css('border', '1px solid green');
-            $('#Output').show();
-            $('#ShowStatus').show();
-            $('#ProgressBar').show();
-            $('#n').show();
-            $('#h').show();
-            $('#Start').hide();
-            inputBlur(id1);
-            inputBlur(id2);
-            Execute("25","Prepare Repository","PrepareRepository","PrepRep");
-            Execute("50","Fill Default","FillDefault","FillDef");
-            CreateAdmin("75",document.getElementById(id1).value,document.getElementById(id2).value);
-            $('#ProgressBar').progressbar( "option", { value: 100 });
-            //$('#OutputTable').append('<tr><td>Prepare Repository</td><td><div id="PrepRep"></div></td></tr>');
-            $('#Abbrechen').hide();
-            alert('Installation erfolgreich abgeschlossen. Bitte schließen Sie die Seite.')
-        }
-    }
+    $('#AdminUserHeader').css('border', '1px solid green');
+    $('#Output').show();
+    $('#ShowStatus').show();
+    $('#ProgressBar').show();
+    $('#n').show();
+    $('#h').show();
+    $('#Start').hide();
+    Execute("33","Prepare Repository","PrepareRepository","PrepRep");
+    Execute("66","Fill Default","FillDefault","FillDef");
+    $('#ProgressBar').progressbar( "option", { value: 100 });
+    $('#Abbrechen').hide();
+    alert('Installation erfolgreich abgeschlossen. Bitte konfigurieren Sie jetzt noch die fehlenden Einstellungen. Sie werden automatisch weitergeleitet.')
+    location.href = 'configure.jsp';
 }
 
 function inputBlur(id){
@@ -99,24 +79,6 @@ function Execute(pv,name,fnct,id) {
         success: function(json) {
             $('#' + id).html(json.MESSAGE);
             if (json.EXIT == "1") { $('#' + id).css('color', '#FF6969'); } else { $('#' + id).css('color', '#55E553'); }
-        },
-        error: function (xhr, thrownError) {
-            alert(xhr.status + "::" + thrownError);
-        }
-    });
-}
-
-function CreateAdmin(pv,sn,ln) {
-    $('#ProgressBar').progressbar( "option", { value: parseInt(pv) });
-    $('#OutputTable').append('<tr><td>Admin User</td><td><div id="AdminUsr"></div></td></tr>');
-    $.ajax({
-        url: '/installer/exec/AdminUser?sn=' + $.base64.encode( sn ) + '&ln=' + $.base64.encode( ln ),
-        dataType: 'json',
-        cache: false,
-        async: false,
-        success: function(json) {
-            $('#AdminUsr').html(json.MESSAGE + ' - ' + sn + '(' + ln + ') erstellt.');
-            if (json.EXIT == "1") { $('#AdminUsr').css('color', '#FF6969'); } else { $('#AdminUsr').css('color', '#55E553'); }
         },
         error: function (xhr, thrownError) {
             alert(xhr.status + "::" + thrownError);
