@@ -112,6 +112,22 @@
         <servlet-name>AdminUserIsAlreadyConfigured</servlet-name>
         <url-pattern>/exec/AdminUserIsAlreadyConfigured</url-pattern>
     </servlet-mapping>
+    <servlet>
+        <servlet-name>ConfigureSysInfo</servlet-name>
+        <servlet-class>de.siv.ksc.webinstaller.ConfigureSysInfo</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ConfigureSysInfo</servlet-name>
+        <url-pattern>/exec/ConfigureSysInfo</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>SysInfoIsAlreadyConfigured</servlet-name>
+        <servlet-class>de.siv.ksc.webinstaller.SysInfoIsAlreadyConfigured</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>SysInfoIsAlreadyConfigured</servlet-name>
+        <url-pattern>/exec/SysInfoIsAlreadyConfigured</url-pattern>
+    </servlet-mapping>
     <!--
             Datasource
     -->

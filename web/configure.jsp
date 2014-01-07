@@ -39,7 +39,9 @@
             button#MailStart { position: absolute; margin-left: 500px; margin-top: -60px; }
             button#MailAbbrechen { position: absolute; margin-left: 667px; margin-top: -60px; }
             button#MailZurueck { display: none; position: absolute; margin-left: 667px; margin-top: -60px; }
-            #ShowStatus, #MailConfigure, #MailEdit, #ConfAdminUser, #EdtAdminUser { display: none; }
+            
+            #ShowStatus, #MailConfigure, #MailEdit, #ConfAdminUser, #EdtAdminUser, #SysInfoConfigure, #SysInfoEdit { display: none; }
+            
             #MailAdminUser { padding: 10px; }
             #MailAdminUser div#MailAdminUserHeader { margin-top: -22px; background-color: #004279; border: 1px solid #FF6969; padding: 5px; font-size: 12px; margin-bottom: 20px; text-align: center;}
             #MailAdminUser table { margin-left: 30px; }
@@ -64,23 +66,22 @@
             #ConfigureAdminUser table,#EditAdminUser table { margin-left: 30px; }
             #ConfigureAdminUser table td:first-child,#EditAdminUser table td:first-child { font-size: 12px; text-align: right; }
             #ConfigureAdminUser input,#EditAdminUser input { width: 200px; border: 1px solid #82abcc; background-color: #004279; color: #fff; padding: 5px;}
+            
+            #Header button#ButtonSysInfo { position: absolute; margin-left: 335px; margin-top: 225px; }
+            button#SysInfoStart { position: absolute; margin-left: 500px; margin-top: -60px; }
+            button#SysInfoAbbrechen { position: absolute; margin-left: 678px; margin-top: -60px; }
+            button#SysInfoZurueck { display: none; position: absolute; margin-left: 667px; margin-top: -60px; }
+            #SysInfoUser,#SysInfoEditUser { padding: 10px; }
+            #SysInfoUser div#SysInfoUserHeader,#SysInfoEditUser div#SysInfoEditUserHeader { margin-top: -22px; background-color: #004279; border: 1px solid #FF6969; padding: 5px; font-size: 12px; margin-bottom: 20px; text-align: center;}
+            #SysInfoUser table,#SysInfoEditUser table { margin-left: 30px; }
+            #SysInfoUser table td:first-child,#SysInfoEditUser table td:first-child { font-size: 12px; text-align: right; }
+            #SysInfoUser input,#SysInfoEditUser input { width: 200px; border: 1px solid #82abcc; background-color: #004279; color: #fff; padding: 5px;}
         </style>
         <script type="text/javascript">
             $(function() {
-                $('#MailStart').button();
-                $('#MailAbbrechen').button();
-                $('.MSE').button();
-                $('.MAE').button();
-                $('.MZE').button();
-                $('#MailZurueck').button();
-                $('#MailConfig').button();
-                $('#ButtonAdminUser').button();
-                $('#AdminStart').button();
-                $('#AdminAbbrechen').button();
-                $('.ASE').button();
-                $('.AAE').button();
-                $('.AZE').button();
-                $('#AdminZurueck').button();
+                $('#MailStart').button(); $('#MailAbbrechen').button(); $('.MSE').button(); $('.MAE').button(); $('.MZE').button(); $('#MailZurueck').button(); $('#MailConfig').button();
+                $('#ButtonAdminUser').button(); $('#AdminStart').button(); $('#AdminAbbrechen').button(); $('.ASE').button(); $('.AAE').button(); $('.AZE').button(); $('#AdminZurueck').button();
+                $('#ButtonSysInfo').button(); $('#SysInfoStart').button(); $('#SysInfoAbbrechen').button(); $('.SISE').button(); $('.SIAE').button(); $('.SIZE').button(); $('#SysInfoZurueck').button();
                 $('#ProgressBar').progressbar({
                     value: false
                 });
@@ -94,7 +95,7 @@
                 <h2>WebKonfigurator</h2>
                 <h4>f&uuml;r kVASy&reg; System Control<font color="#82abcc"> - Version 2 Update 3</font></h4>
                 <p>Dieser WebKonfigurator konfiguriert erweiterte Einstellungen f&uuml;r das kVASy&reg; System Control in der <br>Version 2 Update 3.</p>
-                <button id="MailConfig" onclick="MailConfig('MailConfig');">Mail Konfiguration</button><button id="ButtonAdminUser" onclick="AdminUser('ButtonAdminUser');">Admin User</button>
+                <button id="MailConfig" onclick="MailConfig('MailConfig');">Mail Konfiguration</button><button id="ButtonAdminUser" onclick="AdminUser('ButtonAdminUser');">Admin User</button><button id="ButtonSysInfo" onclick="SysInfo('ButtonSysInfo');">SysInfo</button>
             </div>
             <!-- MailApi Konfiguration -->
             <div id="MailConfigure">
@@ -133,7 +134,7 @@
                 </div>
                 <button id="AdminStart" onclick="execAdminUser('un','nm');">Admin User bearbeiten</button><button id="AdminAbbrechen" onclick="javascript:location.reload();">Abbrechen</button><button id="AdminZurueck" onclick="javascript:location.reload();">Zur&uuml;ck</button>
             </div>
-            <!-- AdminUser -->
+            <!-- AdminUser bearbeiten -->
             <div id="EdtAdminUser">
                 <div id="EditAdminUser">
                 <div id="EditAdminUserHeader">Bitte &auml;ndern Sie hier einen Admin Nutzer. Dieser ist der Nutzer der alle Berechtigungen in der Anwendung hat und andere Nutzer hinzuf&uuml;gen kann. Diese Angabe muss gemacht werden.</div>
@@ -143,6 +144,32 @@
                     </table>
                 </div>
                 <button class="ASE" id="AdminStart" onclick="execAdminUser('unE','nmE');">Admin User bearbeiten</button><button class="AAE" id="AdminAbbrechen" onclick="javascript:location.reload();">Abbrechen</button><button class="AZE" id="AdminZurueck" onclick="javascript:location.reload();">Zur&uuml;ck</button>
+            </div>
+            <!-- SysInfo Konfiguration -->
+            <div id="SysInfoConfigure">
+                <div id="SysInfoUser">
+                <div id="SysInfoUserHeader">Bitte tragen Sie hier die Einstellungen ein. Diese Angaben m&uuml;ssen gemacht werden.</div>
+                    <table>
+                        <tr><td>Pfad:</td><td><input id="portalp" type="text" value="/portal/" onclick="javascript:eraseText('portalp');"/></td></tr>
+                        <tr><td>Release:</td><td><input id="mainv" type="text" value="2" onclick="javascript:eraseText('mainv');"/></td></tr>
+                        <tr><td>Update:</td><td><input id="updatev" type="text" value="3" onclick="javascript:eraseText('updatev');"/></td></tr>
+                        <tr><td>Build:</td><td><input id="buildv" type="text" value="131025" onclick="javascript:eraseText('buildv');"/></td></tr>
+                    </table>
+                </div>
+                <button id="SysInfoStart" onclick="execSysInfoConfigure('mainv','updatev','buildv','portalp');">SysInfo Konfigurieren</button><button id="SysInfoAbbrechen" onclick="javascript:location.reload();">Abbrechen</button><button id="SysInfoZurueck" onclick="javascript:location.reload();">Zur&uuml;ck</button>
+            </div>
+            <!-- SysInfo bearbeiten -->
+            <div id="SysInfoEdit">
+                <div id="SysInfoEditUser">
+                <div id="SysInfoEditUserHeader">Bitte &auml;ndern Sie hier gegebenenfalls die Einstellungen. Diese Angaben m&uuml;ssen gemacht werden.</div>
+                    <table>
+                        <tr><td>Pfad:</td><td><input id="portalpE" type="text" /></td></tr>
+                        <tr><td>Release:</td><td><input id="mainvE" type="text" /></td></tr>
+                        <tr><td>Update:</td><td><input id="updatevE" type="text" /></td></tr>
+                        <tr><td>Build:</td><td><input id="buildvE" type="text" /></td></tr>
+                    </table>
+                </div>
+                <button class="SISE" id="SysInfoStart" onclick="execSysInfoConfigure('mainvE','updatevE','buildvE','portalpE');">SysInfo Konfigurieren</button><button class="SIAE" id="SysInfoAbbrechen" onclick="javascript:location.reload();">Abbrechen</button><button class="SIZE" id="SysInfoZurueck" onclick="javascript:location.reload();">Zur&uuml;ck</button>
             </div>
             <!-- -->
             <div id="n">0%</div><div id="ProgressBar"></div><div id="h">100%</div>

@@ -12,9 +12,9 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     </head>
     <body>
-        <!--GATEWAY_ENGINE:2.3.131113-->
+        <!--GATEWAY_ENGINE:2.3.131127-->
         <center>
-            <h2>kVASy&reg; System Control - Installer Engine 2.3.131113</h2>
+            <h2>kVASy&reg; System Control - Installer Engine 2.3.131127</h2>
             <p>
                 <font size=2>Entwicklungslinie 2 Update 3 - Steffen Baresel</font>
             </p>
@@ -41,9 +41,9 @@
         </div>
         <hr>
         <br></br>
-        <!--INSTALLATION_REPOSITORY_VERSION:2.3.131113-->
+        <!--INSTALLATION_REPOSITORY_VERSION:2.3.131127-->
         Modul: <i><b>Installation Repository</b></i><br>
-        Version: <i><b>2.3.131113</b></i><br>
+        Version: <i><b>2.3.131127</b></i><br>
         Comments: -
         <br></br>
         Format: <i><b>JSON</b></i><br>
@@ -60,9 +60,9 @@
         -->
         <hr>
         <br></br>
-        <!--CONFIGURE_REPOSITORY_VERSION:2.3.131116-->
+        <!--CONFIGURE_REPOSITORY_VERSION:2.3.131127-->
         Modul: <i><b>Konfiguration Repository</b></i><br>
-        Version: <i><b>2.3.131116</b></i><br>
+        Version: <i><b>2.3.131127</b></i><br>
         Comments: -
         <br></br>
         Format: <i><b>JSON</b></i><br>
@@ -72,6 +72,8 @@
             <li><b>ConfigureMailApi</b> - Set configuration for Java Mail Api URL: <a href="/installer/exec/ConfigureMailApi?host=&port=&user=&pass=">/installer/exec/ConfigureMailApi?host=&port=&user=&pass=</a></li>
             <li><b>AdminUserIsAlreadyConfigured</b> - Get configured Admin User URL: <a href="/installer/exec/AdminUserIsAlreadyConfigured">/installer/exec/AdminUserIsAlreadyConfigured</a></li>
             <li><b>CreateAdminUser</b> - Set Admin User URL: <a href="/installer/exec/CreateAdminUser?sn=&ln=">/installer/exec/CreateAdminUser?sn=&ln=</a></li>
+            <li><b>SysInfoIsAlreadyConfigured</b> - Get system information URL: <a href="/installer/exec/SysInfoIsAlreadyConfigured">/installer/exec/SysInfoIsAlreadyConfigured</a></li>
+            <li><b>ConfigureSysInfo</b> - Set set system information URL: <a href="/installer/exec/ConfigureSysInfo?mainv=&updatev=&buildv=&portalp=">/installer/exec/ConfigureSysInfo?mainv=&updatev=&buildv=&portalp=</a></li>
         </ul>
         </font>
         <br></br>

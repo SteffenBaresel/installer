@@ -14,6 +14,7 @@ function MailConfig(id) {
             if (json.INSTALLED == "1") {
                 $("#" + id).hide();
                 $("#ButtonAdminUser").hide();
+                $("#ButtonSysInfo").hide();
                 $('#body').css('height', '525px');
                 $('#Footer').css('top', '475px');
                 $('#MailEdit').show();
@@ -26,6 +27,7 @@ function MailConfig(id) {
                 $('#body').css('height', '525px');
                 $('#Footer').css('top', '475px');
                 $("#ButtonAdminUser").hide();
+                $("#ButtonSysInfo").hide();
                 $('#MailConfigure').show();
             }
         },
@@ -45,6 +47,7 @@ function AdminUser(id) {
             if (json.INSTALLED == "1") {
                 $("#" + id).hide();
                 $("#MailConfig").hide();
+                $("#ButtonSysInfo").hide();
                 $('#body').css('height', '475px');
                 $('#Footer').css('top', '425px');
                 $('#EdtAdminUser').show();
@@ -53,6 +56,7 @@ function AdminUser(id) {
             } else {
                 $("#" + id).hide();
                 $("#MailConfig").hide();
+                $("#ButtonSysInfo").hide();
                 $('#body').css('height', '475px');
                 $('#Footer').css('top', '425px');
                 $('#ConfAdminUser').show();
@@ -159,6 +163,10 @@ function inputBlur(id){
     $("#" + id).attr("disabled",true);
 }
 
+function inputAct(id){
+    $("#" + id).attr("disabled",false);
+}
+
 function sleep(milliseconds) {
   var start = new Date().getTime();
   for (var i = 0; i < 1e7; i++) {
@@ -193,6 +201,108 @@ function CreateAdmin(pv,sn,ln) {
         async: false,
         success: function(json) {
             //
+        },
+        error: function (xhr, thrownError) {
+            alert(xhr.status + "::" + thrownError);
+        }
+    });
+}
+
+/* SysInfo */
+
+function SysInfo(id) {
+    $.ajax({
+        url: '/installer/exec/SysInfoIsAlreadyConfigured',
+        dataType: 'json',
+        cache: false,
+        async: false,
+        success: function(json) {
+            if (json.INSTALLED == "1") {
+                $("#" + id).hide();
+                $("#ButtonSysInfo").hide();
+                $("#ButtonAdminUser").hide();
+                $("#MailConfig").hide();
+                $('#body').css('height', '525px');
+                $('#Footer').css('top', '475px');
+                $('#SysInfoEdit').show();
+                $('#mainvE').val($.base64.decode( json.MAINV ));
+                inputAct('mainvE');
+                $('#updatevE').val($.base64.decode( json.UPDATEV ));
+                inputAct('updatevE');
+                $('#buildvE').val($.base64.decode( json.BUILDV ));
+                inputAct('buildvE');
+                $('#portalpE').val($.base64.decode( json.PORTALP ));
+                inputAct('portalpE');
+            } else {
+                $("#" + id).hide();
+                $('#body').css('height', '525px');
+                $('#Footer').css('top', '475px');
+                $("#ButtonSysInfo").hide();
+                $("#ButtonAdminUser").hide();
+                $("#MailConfig").hide();
+                $('#SysInfoConfigure').show();
+                inputAct('mainvE');
+                inputAct('updatevE');                
+                inputAct('buildvE');
+                inputAct('portalpE');
+            }
+        },
+        error: function (xhr, thrownError) {
+            alert(xhr.status + "::" + thrownError);
+        }
+    });
+}
+
+function execSysInfoConfigure(id1,id2,id3,id4) {
+    if ( document.getElementById(id1).value == "" ) {
+        document.getElementById(id1).style.color="#FF6969";
+        alert("Der Pfad ist nicht korrekt eingetragen.");
+    } else {
+        if ( document.getElementById(id2).value == "" ) {
+            document.getElementById(id2).style.color="#FF6969";
+            alert("Die Release Version ist nicht korrekt eingetragen.");
+        } else {
+            if ( document.getElementById(id3).value == "" ) {
+                document.getElementById(id3).style.color="#FF6969";
+                alert("Die Update Version ist nicht korrekt eingetragen.");
+            } else {
+                if ( document.getElementById(id4).value == "" ) {
+                    document.getElementById(id4).style.color="#FF6969";
+                    alert("Die Build Version ist nicht korrekt eingetragen.");
+                } else {
+                    $('#SysInfoUserHeader').css('border', '1px solid green');
+                    $('#ShowStatus').show();
+                    $('#ProgressBar').show();
+                    $('#n').show();
+                    $('#h').show();
+                    $('#SysInfoStart').hide();
+                    $('.SISE').hide();
+                    inputBlur(id1);
+                    inputBlur(id2);
+                    inputBlur(id3);
+                    inputBlur(id4);
+                    ConfigureSysInfo("50",document.getElementById(id1).value,document.getElementById(id2).value,document.getElementById(id3).value,document.getElementById(id4).value);
+                    $('#ProgressBar').progressbar( "option", { value: 100 });
+                    $('#SysInfoAbbrechen').hide();
+                    $('.SIAE').hide();
+                    $('#SysInfoZurueck').show();
+                    $('.SIZE').show();
+                    alert("SysInfo erfolgreich konfiguriert.");
+                }
+            }
+        }
+    }
+}
+
+function ConfigureSysInfo(pv,mainv,updatev,buildv,portalp) {
+    $('#ProgressBar').progressbar( "option", { value: parseInt(pv) });
+    $.ajax({
+        url: '/installer/exec/ConfigureSysInfo?mainv=' + $.base64.encode( mainv ) + '&updatev=' + $.base64.encode( updatev ) + '&buildv=' + $.base64.encode( buildv ) + '&portalp=' + $.base64.encode( portalp ),
+        dataType: 'json',
+        cache: false,
+        async: false,
+        success: function(json) {
+            // nothing
         },
         error: function (xhr, thrownError) {
             alert(xhr.status + "::" + thrownError);
