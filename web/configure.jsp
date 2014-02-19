@@ -8,80 +8,84 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <link rel="shortcut icon" href="layout/images/favicon.ico" type="image/vnd.microsoft.icon" />
+        <link rel="shortcut icon" href="public/images/favicon.ico" type="image/vnd.microsoft.icon" />
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <meta name="author" content="Steffen Baresel">
 	<meta name="description" content="WebInstaller">
-	<title>WebKonfigurator</title>
-        <script type="text/javascript" src="script/jquery-1.8.2.min.js"></script>
-        <script type="text/javascript" src="script/jquery-ui-1.9.0.custom.min.js"></script>
-        <script type="text/javascript" src="script/WebKonfigurator.js"></script>
+	<title>WebAdmin - Konfigurator</title>
+        <script type="text/javascript" src="public/script/jquery-1.8.2.min.js"></script>
+        <script type="text/javascript" src="public/script/jquery-ui-1.10.4.custom.min.js"></script>
         <script type="text/javascript" src="script/kSCbase64.js"></script>
-        <link rel='stylesheet' href='layout/jquery-ui-1.9.0.custom.css' />
+        <script type="text/javascript" src="script/WebKonfigurator.js"></script>
+        <link rel='stylesheet' href='public/style/jquery-ui-1.10.4.custom.css' />
         <!--
             Erweiterungen
         -->
         <style type="text/css">
-            @font-face { font-family: SansProLight; src: url(layout/SourceSansPro-Regular.ttf) format("truetype"); }
-            body { background-color: #D8D8D8; color: #ffffff; font-size: 16px; font-family: SansProLight; }
-            #body { border: 1px solid #004c8a; width: 825px; height: 375px; background-color: #004c8a; -webkit-box-shadow: 0px 0px 10px #292929; /* webkit browser*/ -moz-box-shadow: 0px 0px 10px #292929; /* firefox */ box-shadow: 0px 0px 10px #292929; }
+            @font-face { font-family: SansProLight; src: url(public/style/SourceSansPro-Regular.ttf) format("truetype"); }
+            body { background-image: url(public/images/bg.png); color: #000; font-size: 16px; font-family: SansProLight; }
+            #body { border: 1px solid #423939; width: 825px; height: 424px; background-color: #fff; -webkit-box-shadow: 0px 0px 2px 0px #423939; /* webkit browser*/ -moz-box-shadow: 0px 0px 2px 0px #423939; /* firefox */ box-shadow: 0px 0px 2px 0px #423939; }
             #Header { width: 825px; height: 225px; }
-            #Header img { position: absolute; margin-left: 680px; margin-top: 25px;}
+            #Header img { position: absolute; margin-left: 650px; margin-top: 15px;}
             #Header h2 { position: absolute; margin-left: 50px; margin-top: 35px;}
             #Header h4 { position: absolute; margin-left: 50px; margin-top: 60px;}
             #Header p { position: absolute; margin-left: 50px; margin-top: 125px;}
-            #Header button#MailConfig { position: absolute; margin-left: 75px; margin-top: 225px; }
-            #Footer { position: absolute; top: 325px; width: 825px; height: 57px; border-top: 1px solid #004279; background-color: #004279; font-size: 10px; color: #82abcc; text-align: center; }
+            #Footer { position: absolute; top: 375px; width: 825px; height: 57px; border-top: 1px solid #423939; background-color: #423939; font-size: 10px; color: #fff; text-align: center; }
             #Footer p { margin-top: 20px; }
-            body a { text-decoration: none; color: #004279; font-size: 12px;}
-            #menu { width: 825px; height: 25px; text-align: center; vertical-align: middle; color: #004279; }
-            
+            #menu a { text-decoration: none; color: #000; font-size: 12px;}
+            li a { text-decoration: none; color: #000; font-size: 18px; font-weight: bold; }
+            #Installer { margin-left: 75px; margin-top: 0px; }
+            #menu { width: 825px; height: 25px; text-align: center; vertical-align: middle; }
+            .ui-input-hofo:focus, .ui-input-hofo:hover { -webkit-box-shadow: 0px 0px 2px 0px #423939; -moz-box-shadow: 0px 0px 2px 0px #423939; box-shadow: 0px 0px 2px 0px #423939; }
+        
             button#MailStart { position: absolute; margin-left: 500px; margin-top: -60px; }
             button#MailAbbrechen { position: absolute; margin-left: 667px; margin-top: -60px; }
             button#MailZurueck { display: none; position: absolute; margin-left: 667px; margin-top: -60px; }
             
             #ShowStatus, #MailConfigure, #MailEdit, #ConfAdminUser, #EdtAdminUser, #SysInfoConfigure, #SysInfoEdit { display: none; }
             
+            #Header button#MailConfig { margin-left: 100px; margin-top: 225px; }
             #MailAdminUser { padding: 10px; }
-            #MailAdminUser div#MailAdminUserHeader { margin-top: -22px; background-color: #004279; border: 1px solid #FF6969; padding: 5px; font-size: 12px; margin-bottom: 20px; text-align: center;}
+            #MailAdminUser div#MailAdminUserHeader { margin-top: -22px; background-color: #fff; border: 1px solid #423939; padding: 5px; font-size: 12px; margin-bottom: 20px; text-align: center;}
             #MailAdminUser table { margin-left: 30px; }
             #MailAdminUser table td:first-child { font-size: 12px; text-align: right; }
-            #MailAdminUser input { width: 200px; border: 1px solid #82abcc; background-color: #004279; color: #fff; padding: 5px;}
+            #MailAdminUser input { width: 200px; border: 1px solid #423939; background-color: #fff; color: #000; padding: 5px;}
             #MailOutput { position: absolute; width: 790px; height: 50px; border: 1px solid #82abcc; top: 420px;left: 25px; background-color: #004c8a; overflow-y: scroll; display: none; }
             #ProgressBar .ui-progressbar-value { background-color: #82abcc; }
             #ProgressBar { display: none; width: 500px; border: 1px solid #82abcc; position: absolute; left: 150px; margin-top: 15px; height: 15px; padding: 2px; }
-            #n { display: none; position: absolute; left: 130px; font-size: 12px; color: #82abcc; margin-top: 17px; }
-            #h { display: none; position: absolute; left: 660px; font-size: 12px; color: #82abcc; margin-top: 17px; }
+            #n { display: none; position: absolute; left: 130px; font-size: 12px; color: #000; margin-top: 17px; }
+            #h { display: none; position: absolute; left: 660px; font-size: 12px; color: #000; margin-top: 17px; }
             #MailOutputTable { width: 100%; font-size: 14px; table-layout: fixed; border-spacing:0; border-collapse:collapse; }
             #MailOutputTable td:first-child { width: 200px; text-align: left; }
             #MailOutputTable td:last-child { text-align: right; }
             #MailOutputTable td { border-bottom: 1px solid #82abcc; padding: 5px; }
             
-            #Header button#ButtonAdminUser { position: absolute; margin-left: 225px; margin-top: 225px; }
+            #Header button#ButtonAdminUser { margin-left: 10px; margin-top: 225px; }
             button#AdminStart { position: absolute; margin-left: 500px; margin-top: -60px; }
             button#AdminAbbrechen { position: absolute; margin-left: 678px; margin-top: -60px; }
             button#AdminZurueck { display: none; position: absolute; margin-left: 667px; margin-top: -60px; }
             #ConfigureAdminUser,#EditAdminUser { padding: 10px; }
-            #ConfigureAdminUser div#ConfigureAdminUserHeader,#EditAdminUser div#EditAdminUserHeader { margin-top: -22px; background-color: #004279; border: 1px solid #FF6969; padding: 5px; font-size: 12px; margin-bottom: 20px; text-align: center;}
+            #ConfigureAdminUser div#ConfigureAdminUserHeader,#EditAdminUser div#EditAdminUserHeader { margin-top: -22px; background-color: #fff; border: 1px solid #423939; padding: 5px; font-size: 12px; margin-bottom: 20px; text-align: center;}
             #ConfigureAdminUser table,#EditAdminUser table { margin-left: 30px; }
             #ConfigureAdminUser table td:first-child,#EditAdminUser table td:first-child { font-size: 12px; text-align: right; }
-            #ConfigureAdminUser input,#EditAdminUser input { width: 200px; border: 1px solid #82abcc; background-color: #004279; color: #fff; padding: 5px;}
+            #ConfigureAdminUser input,#EditAdminUser input { width: 200px; border: 1px solid #423939; background-color: #fff; color: #000; padding: 5px;}
             
-            #Header button#ButtonSysInfo { position: absolute; margin-left: 335px; margin-top: 225px; }
+            #Header button#ButtonSysInfo { margin-left: 10px; margin-top: 225px; }
             button#SysInfoStart { position: absolute; margin-left: 500px; margin-top: -60px; }
             button#SysInfoAbbrechen { position: absolute; margin-left: 678px; margin-top: -60px; }
             button#SysInfoZurueck { display: none; position: absolute; margin-left: 667px; margin-top: -60px; }
             #SysInfoUser,#SysInfoEditUser { padding: 10px; }
-            #SysInfoUser div#SysInfoUserHeader,#SysInfoEditUser div#SysInfoEditUserHeader { margin-top: -22px; background-color: #004279; border: 1px solid #FF6969; padding: 5px; font-size: 12px; margin-bottom: 20px; text-align: center;}
+            #SysInfoUser div#SysInfoUserHeader,#SysInfoEditUser div#SysInfoEditUserHeader { margin-top: -22px; background-color: #fff; border: 1px solid #423939; padding: 5px; font-size: 12px; margin-bottom: 20px; text-align: center;}
             #SysInfoUser table,#SysInfoEditUser table { margin-left: 30px; }
             #SysInfoUser table td:first-child,#SysInfoEditUser table td:first-child { font-size: 12px; text-align: right; }
-            #SysInfoUser input,#SysInfoEditUser input { width: 200px; border: 1px solid #82abcc; background-color: #004279; color: #fff; padding: 5px;}
+            #SysInfoUser input,#SysInfoEditUser input { width: 200px; border: 1px solid #423939; background-color: #fff; color: #000; padding: 5px;}
         </style>
         <script type="text/javascript">
             $(function() {
-                $('#MailStart').button(); $('#MailAbbrechen').button(); $('.MSE').button(); $('.MAE').button(); $('.MZE').button(); $('#MailZurueck').button(); $('#MailConfig').button();
-                $('#ButtonAdminUser').button(); $('#AdminStart').button(); $('#AdminAbbrechen').button(); $('.ASE').button(); $('.AAE').button(); $('.AZE').button(); $('#AdminZurueck').button();
-                $('#ButtonSysInfo').button(); $('#SysInfoStart').button(); $('#SysInfoAbbrechen').button(); $('.SISE').button(); $('.SIAE').button(); $('.SIZE').button(); $('#SysInfoZurueck').button();
+                $('#MailStart').button().addClass('ui-input-hofo'); $('#MailAbbrechen').button().addClass('ui-input-hofo'); $('.MSE').button().addClass('ui-input-hofo'); $('.MAE').button().addClass('ui-input-hofo'); $('.MZE').button().addClass('ui-input-hofo'); $('#MailZurueck').button().addClass('ui-input-hofo'); $('#MailConfig').button().addClass('ui-input-hofo');
+                $('#ButtonAdminUser').button().addClass('ui-input-hofo'); $('#AdminStart').button().addClass('ui-input-hofo'); $('#AdminAbbrechen').button().addClass('ui-input-hofo'); $('.ASE').button().addClass('ui-input-hofo'); $('.AAE').button().addClass('ui-input-hofo'); $('.AZE').button().addClass('ui-input-hofo'); $('#AdminZurueck').button().addClass('ui-input-hofo');
+                $('#ButtonSysInfo').button().addClass('ui-input-hofo'); $('#SysInfoStart').button().addClass('ui-input-hofo'); $('#SysInfoAbbrechen').button().addClass('ui-input-hofo'); $('.SISE').button().addClass('ui-input-hofo'); $('.SIAE').button().addClass('ui-input-hofo'); $('.SIZE').button().addClass('ui-input-hofo'); $('#SysInfoZurueck').button().addClass('ui-input-hofo');
+                $('input[type=text]').addClass('ui-input-hofo');
                 $('#ProgressBar').progressbar({
                     value: false
                 });
@@ -91,10 +95,10 @@
     <body>
         <div id="body">
             <div id="Header">
-                <img src="layout/images/logo_backgroundblue_whitetext.png" />
-                <h2>WebKonfigurator</h2>
-                <h4>f&uuml;r kVASy&reg; System Control<font color="#82abcc"> - Version 2 Update 3</font></h4>
-                <p>Dieser WebKonfigurator konfiguriert erweiterte Einstellungen f&uuml;r das kVASy&reg; System Control in der <br>Version 2 Update 3.</p>
+                <img src="public/images/SIV_AG_Logo_RGB_Web.png" />
+                <h2>WebAdmin - Konfigurator</h2>
+                <h4>f&uuml;r kVASy&reg; System Control<font color="#666"> - Version 3 Build 2014.02</font></h4>
+                <p>Dieser WebKonfigurator konfiguriert erweiterte Einstellungen f&uuml;r das kVASy&reg; System Control in der <br>Version 3 Build 2014.02.</p>
                 <button id="MailConfig" onclick="MailConfig('MailConfig');">Mail Konfiguration</button><button id="ButtonAdminUser" onclick="AdminUser('ButtonAdminUser');">Admin User</button><button id="ButtonSysInfo" onclick="SysInfo('ButtonSysInfo');">SysInfo</button>
             </div>
             <!-- MailApi Konfiguration -->
@@ -150,10 +154,10 @@
                 <div id="SysInfoUser">
                 <div id="SysInfoUserHeader">Bitte tragen Sie hier die Einstellungen ein. Diese Angaben m&uuml;ssen gemacht werden.</div>
                     <table>
-                        <tr><td>Pfad:</td><td><input id="portalp" type="text" value="/portal/" onclick="javascript:eraseText('portalp');"/></td></tr>
-                        <tr><td>Release:</td><td><input id="mainv" type="text" value="2" onclick="javascript:eraseText('mainv');"/></td></tr>
-                        <tr><td>Update:</td><td><input id="updatev" type="text" value="3" onclick="javascript:eraseText('updatev');"/></td></tr>
-                        <tr><td>Build:</td><td><input id="buildv" type="text" value="131025" onclick="javascript:eraseText('buildv');"/></td></tr>
+                        <tr><td>Pfad:</td><td><input id="portalp" type="text" value="/webaccess/" onclick="javascript:eraseText('portalp');"/></td></tr>
+                        <tr><td>Release:</td><td><input id="mainv" type="text" value="3" onclick="javascript:eraseText('mainv');"/></td></tr>
+                        <tr><td>Update:</td><td><input id="updatev" type="text" value="0" onclick="javascript:eraseText('updatev');"/></td></tr>
+                        <tr><td>Build:</td><td><input id="buildv" type="text" value="140203" onclick="javascript:eraseText('buildv');"/></td></tr>
                     </table>
                 </div>
                 <button id="SysInfoStart" onclick="execSysInfoConfigure('mainv','updatev','buildv','portalp');">SysInfo Konfigurieren</button><button id="SysInfoAbbrechen" onclick="javascript:location.reload();">Abbrechen</button><button id="SysInfoZurueck" onclick="javascript:location.reload();">Zur&uuml;ck</button>
@@ -174,8 +178,8 @@
             <!-- -->
             <div id="n">0%</div><div id="ProgressBar"></div><div id="h">100%</div>
             <!-- Ende -->
-            <div id="Footer"><p>2013</p></div>
+            <div id="Footer"><p>2014</p></div>
         </div>
-        <div id="menu"><a href="/installer/">WebManager</a></div>
+        <div id="menu"><a href="/admin">WebAdmin</a></div>
     </body>
 </html>

@@ -6,7 +6,7 @@
 function MailConfig(id) {
     //$('#ActiveContent').html('<table id="ActiveContentTable"></table>');
     $.ajax({
-        url: '/installer/exec/MailApiIsAlreadyConfigured',
+        url: '/admin/exec/MailApiIsAlreadyConfigured',
         dataType: 'json',
         cache: false,
         async: false,
@@ -15,7 +15,7 @@ function MailConfig(id) {
                 $("#" + id).hide();
                 $("#ButtonAdminUser").hide();
                 $("#ButtonSysInfo").hide();
-                $('#body').css('height', '525px');
+                $('#body').css('height', '524px');
                 $('#Footer').css('top', '475px');
                 $('#MailEdit').show();
                 $('#hostE').val($.base64.decode( json.HOST ));
@@ -24,7 +24,7 @@ function MailConfig(id) {
                 $('#passE').val($.base64.decode( json.PASS ));
             } else {
                 $("#" + id).hide();
-                $('#body').css('height', '525px');
+                $('#body').css('height', '524px');
                 $('#Footer').css('top', '475px');
                 $("#ButtonAdminUser").hide();
                 $("#ButtonSysInfo").hide();
@@ -39,7 +39,7 @@ function MailConfig(id) {
 
 function AdminUser(id) {
     $.ajax({
-        url: '/installer/exec/AdminUserIsAlreadyConfigured',
+        url: '/admin/exec/AdminUserIsAlreadyConfigured',
         dataType: 'json',
         cache: false,
         async: false,
@@ -48,7 +48,7 @@ function AdminUser(id) {
                 $("#" + id).hide();
                 $("#MailConfig").hide();
                 $("#ButtonSysInfo").hide();
-                $('#body').css('height', '475px');
+                $('#body').css('height', '474px');
                 $('#Footer').css('top', '425px');
                 $('#EdtAdminUser').show();
                 $('#unE').val($.base64.decode( json.SN ));
@@ -57,7 +57,7 @@ function AdminUser(id) {
                 $("#" + id).hide();
                 $("#MailConfig").hide();
                 $("#ButtonSysInfo").hide();
-                $('#body').css('height', '475px');
+                $('#body').css('height', '474px');
                 $('#Footer').css('top', '425px');
                 $('#ConfAdminUser').show();
             }
@@ -76,24 +76,24 @@ function TestFunction() {
 
 function eraseText(id) {
     document.getElementById(id).value = "";
-    document.getElementById(id).style.color="#fff";
+    document.getElementById(id).style.color="#000";
 }
 
 function execMailConfigure(id1,id2,id3,id4) {
     if ( document.getElementById(id1).value == "" ) {
-        document.getElementById(id1).style.color="#FF6969";
+        document.getElementById(id1).style.color="#E5442D";
         alert("Der Host ist nicht korrekt eingetragen.");
     } else {
         if ( document.getElementById(id2).value == "" ) {
-            document.getElementById(id2).style.color="#FF6969";
+            document.getElementById(id2).style.color="#E5442D";
             alert("Der Port ist nicht korrekt eingetragen.");
         } else {
             if ( document.getElementById(id3).value == "" ) {
-                document.getElementById(id3).style.color="#FF6969";
+                document.getElementById(id3).style.color="#E5442D";
                 alert("Der Name ist nicht korrekt eingetragen.");
             } else {
                 if ( document.getElementById(id4).value == "" ) {
-                    document.getElementById(id4).style.color="#FF6969";
+                    document.getElementById(id4).style.color="#E5442D";
                     alert("Das Passwort ist nicht korrekt eingetragen.");
                 } else {
                     $('#MailAdminUserHeader').css('border', '1px solid green');
@@ -123,18 +123,18 @@ function execMailConfigure(id1,id2,id3,id4) {
 function execAdminUser(id1,id2) {
     // Check Input Username
     if ( document.getElementById(id1).value == "" ) {
-        document.getElementById(id1).style.color="#FF6969";
+        document.getElementById(id1).style.color="#E5442D";
         alert("Der Nutzername ist nicht korrekt eingetragen.");
     } else if ( document.getElementById(id1).value == "mmustermann" ) {
-        document.getElementById(id1).style.color="#FF6969";
+        document.getElementById(id1).style.color="#E5442D";
         alert("Der Nutzername ist nicht korrekt eingetragen.");
     } else {
         // Check Input Name
         if ( document.getElementById(id2).value == "" ) {
-            document.getElementById(id2).style.color="#FF6969";
+            document.getElementById(id2).style.color="#E5442D";
             alert("Der Name ist nicht korrekt eingetragen.");
         } else if ( document.getElementById(id2).value == "Max Mustermann" ) {
-            document.getElementById(id2).style.color="#FF6969";
+            document.getElementById(id2).style.color="#E5442D";
             alert("Der Name ist nicht korrekt eingetragen.");
         } else {
             $('#ConfigureAdminUserHeader').css('border', '1px solid green');
@@ -159,7 +159,7 @@ function execAdminUser(id1,id2) {
 }
 
 function inputBlur(id){
-    document.getElementById(id).style.color="#82abcc";
+    document.getElementById(id).style.color="#666666";
     $("#" + id).attr("disabled",true);
 }
 
@@ -179,7 +179,7 @@ function sleep(milliseconds) {
 function ConfigureMailApi(pv,host,port,user,pass) {
     $('#ProgressBar').progressbar( "option", { value: parseInt(pv) });
     $.ajax({
-        url: '/installer/exec/ConfigureMailApi?host=' + $.base64.encode( host ) + '&port=' + $.base64.encode( port ) + '&user=' + $.base64.encode( user ) + '&pass=' + $.base64.encode( pass ),
+        url: '/admin/exec/ConfigureMailApi?host=' + $.base64.encode( host ) + '&port=' + $.base64.encode( port ) + '&user=' + $.base64.encode( user ) + '&pass=' + $.base64.encode( pass ),
         dataType: 'json',
         cache: false,
         async: false,
@@ -195,7 +195,7 @@ function ConfigureMailApi(pv,host,port,user,pass) {
 function CreateAdmin(pv,sn,ln) {
     $('#ProgressBar').progressbar( "option", { value: parseInt(pv) });
     $.ajax({
-        url: '/installer/exec/AdminUser?sn=' + $.base64.encode( sn ) + '&ln=' + $.base64.encode( ln ),
+        url: '/admin/exec/AdminUser?sn=' + $.base64.encode( sn ) + '&ln=' + $.base64.encode( ln ),
         dataType: 'json',
         cache: false,
         async: false,
@@ -212,7 +212,7 @@ function CreateAdmin(pv,sn,ln) {
 
 function SysInfo(id) {
     $.ajax({
-        url: '/installer/exec/SysInfoIsAlreadyConfigured',
+        url: '/admin/exec/SysInfoIsAlreadyConfigured',
         dataType: 'json',
         cache: false,
         async: false,
@@ -222,7 +222,7 @@ function SysInfo(id) {
                 $("#ButtonSysInfo").hide();
                 $("#ButtonAdminUser").hide();
                 $("#MailConfig").hide();
-                $('#body').css('height', '525px');
+                $('#body').css('height', '524px');
                 $('#Footer').css('top', '475px');
                 $('#SysInfoEdit').show();
                 $('#mainvE').val($.base64.decode( json.MAINV ));
@@ -235,7 +235,7 @@ function SysInfo(id) {
                 inputAct('portalpE');
             } else {
                 $("#" + id).hide();
-                $('#body').css('height', '525px');
+                $('#body').css('height', '524px');
                 $('#Footer').css('top', '475px');
                 $("#ButtonSysInfo").hide();
                 $("#ButtonAdminUser").hide();
@@ -255,19 +255,19 @@ function SysInfo(id) {
 
 function execSysInfoConfigure(id1,id2,id3,id4) {
     if ( document.getElementById(id1).value == "" ) {
-        document.getElementById(id1).style.color="#FF6969";
+        document.getElementById(id1).style.color="#E5442D";
         alert("Der Pfad ist nicht korrekt eingetragen.");
     } else {
         if ( document.getElementById(id2).value == "" ) {
-            document.getElementById(id2).style.color="#FF6969";
+            document.getElementById(id2).style.color="#E5442D";
             alert("Die Release Version ist nicht korrekt eingetragen.");
         } else {
             if ( document.getElementById(id3).value == "" ) {
-                document.getElementById(id3).style.color="#FF6969";
+                document.getElementById(id3).style.color="#E5442D";
                 alert("Die Update Version ist nicht korrekt eingetragen.");
             } else {
                 if ( document.getElementById(id4).value == "" ) {
-                    document.getElementById(id4).style.color="#FF6969";
+                    document.getElementById(id4).style.color="#E5442Ds";
                     alert("Die Build Version ist nicht korrekt eingetragen.");
                 } else {
                     $('#SysInfoUserHeader').css('border', '1px solid green');
@@ -297,7 +297,7 @@ function execSysInfoConfigure(id1,id2,id3,id4) {
 function ConfigureSysInfo(pv,mainv,updatev,buildv,portalp) {
     $('#ProgressBar').progressbar( "option", { value: parseInt(pv) });
     $.ajax({
-        url: '/installer/exec/ConfigureSysInfo?mainv=' + $.base64.encode( mainv ) + '&updatev=' + $.base64.encode( updatev ) + '&buildv=' + $.base64.encode( buildv ) + '&portalp=' + $.base64.encode( portalp ),
+        url: '/admin/exec/ConfigureSysInfo?mainv=' + $.base64.encode( mainv ) + '&updatev=' + $.base64.encode( updatev ) + '&buildv=' + $.base64.encode( buildv ) + '&portalp=' + $.base64.encode( portalp ),
         dataType: 'json',
         cache: false,
         async: false,

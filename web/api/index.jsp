@@ -49,9 +49,9 @@
         Format: <i><b>JSON</b></i><br>
         <font size=2>Query:<br>
         <ul>
-            <li><b>PrepareRepository</b> - Prepare Database Backend for Profiles usage URL: <a href="/installer/exec/PrepareRepository">/installer/exec/PrepareRepository</a></li>
-            <li><b>UnprepareRepository</b> - Unprepare Database Backend for Profiles usage URL: <a href="/installer/exec/UnprepareRepository">/installer/exec/UnprepareRepository</a></li>
-            <li><b>FillDefault</b> - Fill Default Values for Profiles usage URL: <a href="/installer/exec/FillDefault">/installer/exec/FillDefault</a></li>
+            <li><b>PrepareRepository</b> - Prepare Database Backend for Profiles usage URL: <a href="/admin/exec/PrepareRepository">/admin/exec/PrepareRepository</a></li>
+            <li><b>UnprepareRepository</b> - Unprepare Database Backend for Profiles usage URL: <a href="/admin/exec/UnprepareRepository">/admin/exec/UnprepareRepository</a></li>
+            <li><b>FillDefault</b> - Fill Default Values for Profiles usage URL: <a href="/admin/exec/FillDefault">/admin/exec/FillDefault</a></li>
         </ul>
         </font>
         <br></br>
@@ -68,12 +68,12 @@
         Format: <i><b>JSON</b></i><br>
         <font size=2>Query:<br>
         <ul>
-            <li><b>MailApiIsAlreadyConfigured</b> - Get configuration for Java Mail Api and check ifs already configured URL: <a href="/installer/exec/MailApiIsAlreadyConfigured">/installer/exec/MailApiIsAlreadyConfigured</a></li>
-            <li><b>ConfigureMailApi</b> - Set configuration for Java Mail Api URL: <a href="/installer/exec/ConfigureMailApi?host=&port=&user=&pass=">/installer/exec/ConfigureMailApi?host=&port=&user=&pass=</a></li>
-            <li><b>AdminUserIsAlreadyConfigured</b> - Get configured Admin User URL: <a href="/installer/exec/AdminUserIsAlreadyConfigured">/installer/exec/AdminUserIsAlreadyConfigured</a></li>
-            <li><b>CreateAdminUser</b> - Set Admin User URL: <a href="/installer/exec/CreateAdminUser?sn=&ln=">/installer/exec/CreateAdminUser?sn=&ln=</a></li>
-            <li><b>SysInfoIsAlreadyConfigured</b> - Get system information URL: <a href="/installer/exec/SysInfoIsAlreadyConfigured">/installer/exec/SysInfoIsAlreadyConfigured</a></li>
-            <li><b>ConfigureSysInfo</b> - Set set system information URL: <a href="/installer/exec/ConfigureSysInfo?mainv=&updatev=&buildv=&portalp=">/installer/exec/ConfigureSysInfo?mainv=&updatev=&buildv=&portalp=</a></li>
+            <li><b>MailApiIsAlreadyConfigured</b> - Get configuration for Java Mail Api and check ifs already configured URL: <a href="/admin/exec/MailApiIsAlreadyConfigured">/admin/exec/MailApiIsAlreadyConfigured</a></li>
+            <li><b>ConfigureMailApi</b> - Set configuration for Java Mail Api URL: <a href="/admin/exec/ConfigureMailApi?host=&port=&user=&pass=">/admin/exec/ConfigureMailApi?host=&port=&user=&pass=</a></li>
+            <li><b>AdminUserIsAlreadyConfigured</b> - Get configured Admin User URL: <a href="/admin/exec/AdminUserIsAlreadyConfigured">/admin/exec/AdminUserIsAlreadyConfigured</a></li>
+            <li><b>CreateAdminUser</b> - Set Admin User URL: <a href="/admin/exec/CreateAdminUser?sn=&ln=">/admin/exec/CreateAdminUser?sn=&ln=</a></li>
+            <li><b>SysInfoIsAlreadyConfigured</b> - Get system information URL: <a href="/admin/exec/SysInfoIsAlreadyConfigured">/admin/exec/SysInfoIsAlreadyConfigured</a></li>
+            <li><b>ConfigureSysInfo</b> - Set set system information URL: <a href="/admin/exec/ConfigureSysInfo?mainv=&updatev=&buildv=&portalp=">/admin/exec/ConfigureSysInfo?mainv=&updatev=&buildv=&portalp=</a></li>
         </ul>
         </font>
         <br></br>

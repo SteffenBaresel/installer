@@ -6,7 +6,7 @@
 function WebInstaller(id) {
     //$('#ActiveContent').html('<table id="ActiveContentTable"></table>');
     $.ajax({
-        url: '/installer/exec/IsAlreadyInstalled',
+        url: '/admin/exec/IsAlreadyInstalled',
         dataType: 'json',
         cache: false,
         async: false,
@@ -15,7 +15,7 @@ function WebInstaller(id) {
                 alert("Eine Version von kVASy System Control ist bereits installiert.");
             } else {
                 $("#" + id).hide();
-                $('#body').css('height', '825px');
+                $('#body').css('height', '824px');
                 $('#Footer').css('top', '775px');
                 $('#Installer').show();
             }
@@ -34,7 +34,7 @@ function TestFunction() {
 
 function eraseText(id) {
     document.getElementById(id).value = "";
-    document.getElementById(id).style.color="#fff";
+    document.getElementById(id).style.color="#000";
 }
 
 function execInstaller(id1,id2) {
@@ -46,8 +46,10 @@ function execInstaller(id1,id2) {
     $('#n').show();
     $('#h').show();
     $('#Start').hide();
-    Execute("33","Prepare Repository","PrepareRepository","PrepRep");
-    Execute("66","Fill Default","FillDefault","FillDef");
+    Execute("20","Repository: Prepare Repository","PrepareRepository","PrepRep");
+    Execute("40","Repository: Fill Default","FillDefault","FillDef");
+    Execute("60","Monitoring: Prepare Data Source","PrepareMonitoring","PrepMoni");
+    Execute("80","Monitoring: Fill Default","FillMonitoringDefault","FillMoniDef");
     $('#ProgressBar').progressbar( "option", { value: 100 });
     $('#Abbrechen').hide();
     alert('Installation erfolgreich abgeschlossen. Bitte konfigurieren Sie jetzt noch die fehlenden Einstellungen. Sie werden automatisch weitergeleitet.')
@@ -55,7 +57,7 @@ function execInstaller(id1,id2) {
 }
 
 function inputBlur(id){
-    document.getElementById(id).style.color="#82abcc";
+    document.getElementById(id).style.color="#666";
     $("#" + id).attr("disabled",true);
 }
 
@@ -72,13 +74,13 @@ function Execute(pv,name,fnct,id) {
     $('#ProgressBar').progressbar( "option", { value: parseInt(pv) });
     $('#OutputTable').append('<tr><td>' + name + '</td><td><div id="' + id + '"></div></td></tr>');
     $.ajax({
-        url: '/installer/exec/' + fnct,
+        url: '/admin/exec/' + fnct,
         dataType: 'json',
         cache: false,
         async: false,
         success: function(json) {
             $('#' + id).html(json.MESSAGE);
-            if (json.EXIT == "1") { $('#' + id).css('color', '#FF6969'); } else { $('#' + id).css('color', '#55E553'); }
+            if (json.EXIT == "1") { $('#' + id).css('color', '#E5442D'); } else { $('#' + id).css('color', '#55E553'); }
         },
         error: function (xhr, thrownError) {
             alert(xhr.status + "::" + thrownError);

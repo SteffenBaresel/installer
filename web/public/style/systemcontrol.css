@@ -1,0 +1,1128 @@
+/* 
+    Document   : systemcontrol.css
+    Created on : 31.01.2014, 14:55:02
+    Author     : sbaresel
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+@font-face { font-family: SansProLight; src: url(SourceSansPro-Regular.ttf) format("truetype"); }
+body { background-color: #ffffff; font-family: SansProLight, Arial; cursor: default; min-width: 1180px; min-height: 800px; }
+span.NoEntry { font-size: 12px; color: 000; margin-left: 4px; }
+
+/* Page Structure Start */
+
+section#menu, section#content, section#bottom, section#content-index {
+    position: absolute;
+    left: 0;
+    right: 0;
+    min-width: 1180px;
+}
+
+section#menu {
+    top: 0;
+    height: 120px;
+    padding: 10px;
+    background-image: url(../images/header.png);
+}
+
+section#content {
+    top: 140px;
+    bottom: 73px;
+    background-color: #423939;
+    padding: 10px;
+}
+
+section#content-index {
+    top: 140px;
+    bottom: 73px;
+    background-image: url(../images/bg.png);
+    padding: 10px;
+}
+
+section#bottom {
+    bottom: 0px;
+    height: 53px;
+    padding: 10px;
+    background-image: url(../images/bg.png);
+}
+
+section#big-taov {
+    height: 200px;
+    top: 120px;
+    margin: 5px;
+    min-width: 1180px;
+}
+
+section#user-menu {
+    position: absolute;
+    right: 0;
+    top: 0;
+    left: 0;
+    background-color: #423939;
+    height: 32px;
+    min-width: 1200px;
+}
+
+section#user-picture {
+    position: absolute;
+    background-color: #423939;
+    border: 1px solid #fff;
+    right: 15px;
+    height: 75px;
+}
+
+section#user-picture img {
+    width: 75px;
+    height: 75px;
+}
+
+/* Page Structure End */
+/* Section Menu Start */
+
+div#bg-menu {
+    background-color: #fff;
+    position: absolute;
+    top: 32px;
+    left: 0;
+    width: 540px;
+    height: 100px;
+}
+
+div#bg-user-menu {
+    background-color: #423939;
+    position: absolute;
+    top: 32px;
+    left: 540px;
+    right: 0;
+    height: 100px;
+}
+
+div#logo-title, div#logo-img, div#logo-subtitle {
+    position: absolute;
+}
+
+div#logo-img {
+    left: 25px;
+    top: 47px;
+}
+
+div#logo-title {
+    left: 200px;
+    top: 57px;
+    font-size: 36px;
+    letter-spacing: -2px;
+}
+
+div#logo-title font:last-child {
+    margin-left: 8px; 
+}
+
+div#logo-subtitle {
+    left: 202px;
+    top: 102px;
+    font-size: 12px; 
+    color: #423939;
+}
+
+.logo-red {
+    color: #E5442D;
+}
+
+.logo-blue {
+    color: #004179;
+}
+
+div#menu-locator {
+    position: absolute;
+    right: 22px;
+    top: 105px;
+    height: 25px;
+    width: 300px;
+    text-align: right;
+    font-size: 16px;
+    color: #fff;
+}
+
+/* Section Menu End */
+/* Login Page Start */
+
+div#login-div {
+    position: absolute;
+    top: 50px;
+    right: 50px;
+    border: 1px solid #423939;
+    background-image: url(../images/bg.png);
+    padding: 15px; 
+}
+
+div#login-desc {
+    position: absolute;
+    font-size: 13px;
+    top: 250px;
+    width: 1150px;
+    height: 450px;
+    color: #fff;    
+    left: 0;
+    right: 0;
+    margin: auto;
+}
+
+div#login-desc span {
+    float: left;
+}
+
+.login-left, .login-center, .login-right {
+    width: 350px;
+    padding: 15px;
+}
+
+.login-small {
+    font-size: 12px; 
+}
+
+div#login-footer {
+    float: right;
+    margin-top: 15px;
+    margin-right: 5px;
+}
+
+div#login-error, div#login-success {
+    font-size: 12px;
+    position: absolute;
+    width: 200px;
+    right: 400px;
+    top: 74px;
+    border: 1px solid #423939;
+}
+
+/* Login Page End */
+/* Jquery Extension Start */
+
+.ui-bg-white {
+    background-image: url(../images/bg.png);
+}
+
+.ui-corner-top {
+    border-top: 1px solid #423939;
+}
+
+.ui-input-corner-all, .ui-input-corner-all-error {
+    padding-left: 10px; 
+    padding-right: 10px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+
+.ui-input-corner-all {
+    border: 1px solid #423939;
+}
+
+.ui-input-corner-all-error {
+    border: 1px solid #E5442D;
+}
+
+.ui-input-hofo {
+    background-color: #fff;
+}
+
+.ui-input-hofo:focus, .ui-input-hofo:hover {
+    -webkit-box-shadow: 0px 0px 2px 0px #423939;
+    -moz-box-shadow: 0px 0px 2px 0px #423939;
+    box-shadow: 0px 0px 2px 0px #423939;
+}
+
+button.ui-state-hover:focus, button.ui-state-hover:hover {
+    -webkit-box-shadow: 0px 0px 2px 0px #423939;
+    -moz-box-shadow: 0px 0px 2px 0px #423939;
+    box-shadow: 0px 0px 2px 0px #423939;
+}
+
+.ui-opacity {   
+    opacity: 0.75;       /* modern browser */  
+    -moz-opacity: 0.75;  /* older Mozilla browser */  
+    -ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=75)"; /* IE8 in Standard Compliant Mode */  
+    filter:alpha(opacity=75); /* IE5.x -7.0 */  
+}
+
+.ui-opacity-med {   
+    opacity: 0.4;
+    -moz-opacity: 0.4;
+    -ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=40)";
+    filter:alpha(opacity=40);
+}
+
+.ui-user-menu .ui-icon {
+    background-image: url(../images/ui-icons_ffffff_256x240.png);
+}
+
+/* Jquery Extension End */
+/* Link tiles Start */
+
+span#ui-tile {
+    background-color: #fff;
+    border: 1px solid #423939;
+}
+
+span#ui-tile-woc {
+    opacity: 0.4;
+    -moz-opacity: 0.4;
+    -ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=40)";
+    filter:alpha(opacity=40);
+}
+
+span#ui-tile-woc:hover, span#ui-tile-woc:focus {
+    opacity: 0.8;
+    -moz-opacity: 0.8;
+    -ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=80)";
+    filter:alpha(opacity=80);
+}
+
+span.ui-tile-130px, span.ui-tile-300px {
+    float: left;
+    margin: 5px;
+    padding: 5px;
+    height: 130px;
+}
+
+span.ui-tile-130px:hover, span.ui-tile-300px:hover {
+    cursor: pointer;
+}
+
+span.ui-tile-130px {
+    width: 130px;
+}
+
+span.ui-tile-300px {
+    width: 300px;
+}
+
+span#ui-tile img.ui-tile-cimg {
+    float: left;
+    margin-top: 16px;
+    margin-left: 15px;
+    margin-right: 15px;
+}
+
+span#ui-tile span.ui-tile-header {
+    margin-top: 5px;
+    float: left;
+    font-size: 24px;
+    letter-spacing: -2px;
+}
+
+span#ui-tile span.ui-tile-content {
+    font-size: 14px;
+    margin-top: 10px;
+}
+
+/* Link tiles End */
+/* Slim Taov Start */
+
+.critical {
+    background-color: #E5442D;
+    color: #fff;
+}
+
+.warning {
+    background-color: orange;
+    color: #fff;
+}
+
+.ok {
+    background-color: #088A08;
+    color: #fff;
+}
+
+.unknown {
+    background-color: #C800C8;
+    color: #fff;
+}
+
+/* Slim Taov End */
+/* User Menu Start */
+
+div#UserMenu {
+    color: #fff;
+    font-size: 14px;
+    padding: 6px;
+    float: right;
+    margin-right: 105px;
+    margin-left: 15px;
+}
+
+div#UserMenu a {
+    text-decoration: none;
+}
+
+div#UserMenu span {
+    margin-left: 2px;
+    margin-right: 2px;
+}
+
+/* User Menu End */
+/* User Profile Dialog Start */
+
+#UserProfileImg { position: absolute; margin-top: 5px; margin-left: 5px; background-color: #423939; height: 150px; }
+#UserProfileImg img { width: 150px;  height: 150px; }
+#UserProfileUid { position: absolute; left: 200px; top: 35px; width: 350px; }
+#UserProfileName { position: absolute; left: 200px; top: 70px; width: 350px; }
+#UserProfileMail { position: absolute; left: 200px; top: 105px; width: 350px; }
+#UserProfileGroup { position: absolute; left: 15px; top: 185px; width: 158px; border: 1px solid #423939; height: 300px; cursor: default; }
+#UserProfilePerm { position: absolute; left: 183px; top: 185px; width: 402px; border: 1px solid #423939; height: 300px; cursor: default; }
+#UserProfileGroupCnt { padding: 5px; margin-top: 30px; height: 250px; overflow-y: auto; width: 147px; }
+#UserProfilePermCnt { padding: 5px; margin-top: 30px; height: 250px; overflow-y: auto; width: 392px; }
+#UserProfileDialog input { border: 1px solid #423939; background-color: #fff; color: #000; width: 265px; padding: 5px; float: right; }
+#UserProfileDialog span { padding: 8px; float: left; font-size: 12px; font-weight: bold; }
+#UserProfileImgHover { display: none; position: absolute; width: 130px; padding: 10px; background-color: #fff; margin-left: 5px; top: 118px; cursor: pointer; text-align: center; font-weight: bold; color: #000; }
+
+/* User Profile Dialog End */
+/* Configuration Dilaog Start */
+
+#MailCC,#MailEsk1,#MailEsk2,#MailEsk3 { padding: 4px; }
+#MailCC input,#MailEsk1 input,#MailEsk2 input,#MailEsk3 input { border: 1px solid #423939; background-color: #fff; color: #000; width: 400px; padding: 7px; height: 21px; }
+#MailCC span,#MailEsk1 span,#MailEsk2 span,#MailEsk3 span { margin-left: 33px; margin-right: 25px; }
+#MailCC button,#MailEsk1 button,#MailEsk2 button,#MailEsk3 button { position: absolute; margin-left: 5px; }
+#MailSG div.jqte { height: 170px; border: 1px solid #423939; }
+#MailSG .jqte_editor,#MailSG .jqte_source { height: 76px; }
+
+#UserMgmntUserList,#UserMgmntGroupList,#UserMgmntPrivList,#UserMgmntRoleList { margin-top: -297px; margin-left: 300px; width: 792px; height: 295px; border: 1px solid #423939; overflow-y: scroll; background-color: #423939; }
+#UserMgmntUserMenu,#UserMgmntGroupMenu,#UserMgmntPrivMenu,#UserMgmntRoleMenu { width: 285px; height: 295px; }
+#UserMgmntUsGrList,#UserMgmntGrRoList,#UserMgmntRoPrList { width: 1092px; height: 175px; border: 1px solid #423939; overflow-y: scroll; }
+#UserMgmntUserMenu table,#UserMgmntGroupMenu table,#UserMgmntRoleMenu table,#UserMgmntPrivMenu table { width: 285px; table-layout: fixed; border-spacing: 0; border-collapse: collapse; font-size: 12px; font-weight: bold; cursor: default; }
+#UserMgmntUserMenu table td,#UserMgmntGroupMenu table td,#UserMgmntRoleMenu table td,#UserMgmntPrivMenu table td { padding: 2px; }
+#UserMgmntUserMenu table input,#UserMgmntGroupMenu table input,#UserMgmntRoleMenu table input,#UserMgmntPrivMenu table input { width: 270px; border: 1px solid #423939; background-color: #fff; color: #000; padding: 5px; font-size: 16px; cursor: text; }
+#UserMgmntUserMenu button,#UserMgmntGroupMenu button,#UserMgmntRoleMenu button,#UserMgmntPrivMenu button { margin-left: 10px; margin-top: 10px; }
+#UserMgmntUserList table,#UserMgmntGroupList table,#UserMgmntRoleList table,#UserMgmntPrivList table { width: 774px; table-layout: fixed; border-spacing: 0; border-collapse: collapse; cursor: default; }
+#UserMgmntUserList table td,#UserMgmntGroupList table td,#UserMgmntRoleList table td,#UserMgmntPrivList table td { padding: 5px; text-align: left; }
+#UserMgmntUserList table tr:hover,#UserMgmntGroupList table tr:hover,#UserMgmntRoleList table tr:hover,#UserMgmntPrivList table tr:hover { background-color: #dedede; color: #000; }
+#UserMgmntUserList table tr,#UserMgmntGroupList table tr,#UserMgmntRoleList table tr,#UserMgmntPrivList table tr { font-size: 14px; background-color: #fff; color: #000; }
+#UserMgmntUserList table tr:first-child th,#UserMgmntGroupList table tr:first-child th,#UserMgmntRoleList table tr:first-child th,#UserMgmntPrivList table tr:first-child th { font-size: 12px; padding: 5px; background-color: #423939; }
+#UserMgmntUserList table th:last-child,#UserMgmntGroupList table th:last-child,#UserMgmntRoleList table th:last-child,#UserMgmntPrivList table th:last-child { width: 25px; text-align: center; }
+#UserMgmntUserList table td:last-child,#UserMgmntGroupList table td:last-child,#UserMgmntRoleList table td:last-child,#UserMgmntPrivList table td:last-child { border-left: 1px solid #423939; background-color: #423939; text-align: center; }
+#UserMgmntUserList table td img,#UserMgmntGroupList table td img,#UserMgmntRoleList table td img,#UserMgmntPrivList table td img { margin-bottom: -3px; cursor: pointer; }
+#UserMgmntUserList table td:first-child,#UserMgmntGroupList table td:first-child,#UserMgmntRoleList table td:first-child,#UserMgmntPrivList table td:first-child { border-bottom: 1px solid #423939; }
+#UserMgmntUserList table th:first-child,#UserMgmntGroupList table th:first-child,#UserMgmntRoleList table th:first-child,#UserMgmntPrivList table th:first-child { width: 350px; border-bottom: 1px solid #423939; color: #fff;}
+#UserMgmntUserList table th:first-child + th,#UserMgmntUserList table td:first-child + td { width: 125px; text-align: center; border-bottom: 1px solid #423939; }
+#UserMgmntUserList table th:first-child + th + th,#UserMgmntUserList table td:first-child + td + td { width: 125px; text-align: center; border-bottom: 1px solid #423939; }
+#UserMgmntUserList table th:first-child + th + th + th,#UserMgmntUserList table td:first-child + td + td + td { width: 50px; text-align: center; border-bottom: 1px solid #423939; }
+#UserMgmntUserList table th:first-child + th, #UserMgmntUserList table th:first-child + th + th, #UserMgmntUserList table th:first-child + th + th + th { color: #fff; }
+#UserMgmntGroupList table th:first-child + th,#UserMgmntRoleList table th:first-child + th,#UserMgmntPrivList table th:first-child + th { width: 350px; border-bottom: 1px solid #423939; color: #fff; }
+#UserMgmntGroupList table td:first-child + td,#UserMgmntRoleList table td:first-child + td,#UserMgmntPrivList table td:first-child + td { width: 350px; border-bottom: 1px solid #423939; }
+#UserMgmntRoPrList1 { float: left; width: 374px; border-right: 1px solid #423939; font-size: 12px; font-weight: bold; }
+#UserMgmntRoPrList1 table { table-layout: fixed; border-spacing: 0; border-collapse: collapse; width: 100%; cursor: default; }
+#UserMgmntRoPrList2 table { table-layout: fixed; border-spacing: 0; border-collapse: collapse; cursor: default; }
+#UserMgmntRoPrList1 table td { padding-left: 5px; border-bottom: 1px solid #423939; }
+#UserMgmntRoPrList2 table td { text-align: center; border-bottom: 1px solid #423939; border-right: 1px solid #423939; }
+#UserMgmntRoPrList1 table tr,#UserMgmntRoPrList2 table tr { height: 42px; background-color: #fff; }
+#UserMgmntRoPrList1 table tr:first-child,#UserMgmntRoPrList2 table tr:first-child { height: 20px; font-size: 12px; }
+#UserMgmntRoPrList1 table th { padding: 5px; color: #fff; border-bottom: 1px solid #423939; background-color: #423939; }
+#UserMgmntRoPrList2 table th { min-width: 125px; padding: 5px; color: #fff; border-bottom: 1px solid #423939; border-right: 1px solid #423939; background-color: #423939; }
+#UserMgmntRoPrList2 { float: right; width: 700px; font-size: 14px; font-weight: bold; overflow-x: auto; }
+#UserMgmntGrRoList1 { float: left; width: 194px; border-right: 1px solid #423939; font-size: 12px; font-weight: bold; }
+#UserMgmntGrRoList1 table { table-layout: fixed; border-spacing: 0; border-collapse: collapse; width: 100%; cursor: default; }
+#UserMgmntGrRoList2 table { table-layout: fixed; border-spacing: 0; border-collapse: collapse; cursor: default; }
+#UserMgmntGrRoList1 table td { padding-left: 5px; border-bottom: 1px solid #423939; }
+#UserMgmntGrRoList2 table td { text-align: center; border-bottom: 1px solid #423939; border-right: 1px solid #423939; }
+#UserMgmntGrRoList1 table tr,#UserMgmntGrRoList2 table tr { height: 42px; background-color: #fff; }
+#UserMgmntGrRoList1 table tr:first-child,#UserMgmntGrRoList2 table tr:first-child { height: 20px; font-size: 12px; }
+#UserMgmntGrRoList1 table th { padding: 5px; color: #fff; border-bottom: 1px solid #423939; background-color: #423939; }
+#UserMgmntGrRoList2 table th { min-width: 125px; padding: 5px; color: #fff; border-bottom: 1px solid #423939; border-right: 1px solid #423939; background-color: #423939; }
+#UserMgmntGrRoList2 { float: right; width: 880px; font-size: 14px; font-weight: bold; overflow-x: auto; }
+#UserMgmntUsGrList1 { float: left; width: 174px; border-right: 1px solid #423939; font-size: 12px; font-weight: bold; }
+#UserMgmntUsGrList1 table { table-layout: fixed; border-spacing: 0; border-collapse: collapse; width: 100%; cursor: default; }
+#UserMgmntUsGrList2 table { table-layout: fixed; border-spacing: 0; border-collapse: collapse; cursor: default; }
+#UserMgmntUsGrList1 table td { padding-left: 5px; border-bottom: 1px solid #423939; }
+#UserMgmntUsGrList2 table td { text-align: center; border-bottom: 1px solid #423939; border-right: 1px solid #423939; }
+#UserMgmntUsGrList1 table tr,#UserMgmntUsGrList2 table tr { height: 42px; background-color: #fff; }
+#UserMgmntUsGrList1 table tr:first-child,#UserMgmntUsGrList2 table tr:first-child { height: 20px; font-size: 12px; }
+#UserMgmntUsGrList1 table th { padding: 5px; color: #fff; border-bottom: 1px solid #423939; background-color: #423939; }
+#UserMgmntUsGrList2 table th { min-width: 125px; padding: 5px; color: #fff; border-bottom: 1px solid #423939; border-right: 1px solid #423939; background-color: #423939; }
+#UserMgmntUsGrList2 { float: right; width: 900px; font-size: 14px; font-weight: bold; overflow-x: auto; }
+#UserMgmntUsGrList2 img,#UserMgmntRoPrList2 img,#UserMgmntGrRoList2 img { cursor: pointer; }
+#UserMgmntUsGrList,#UserMgmntRoPrList,#UserMgmntGrRoList { background-color: #423939;}
+
+#MailHContent {  }
+#MailFContent {  }
+#MailH div.jqte { height: 175px; border: 1px solid #423939; }
+#MailH .jqte_editor,#MailH .jqte_source { height: 126px; }
+#MailF div.jqte { height: 325px; border: 1px solid #423939; }
+#MailF .jqte_editor,#MailF .jqte_source { height: 276px; }
+
+#ConfigurationTabs .ui-tabs-panel {
+    height: 700px;
+    overflow-y: auto;
+}
+
+#ConfigurationSection {
+    width: 97%;
+    padding: 10px;
+    margin-top: 10px;
+    font-size: 16px;
+}
+
+#ConfigurationSectionTitle {
+    margin-top: -24px;
+    padding: 5px;
+    background-color: #fff;
+    border-bottom: 1px solid #423939;
+    font-size: 16px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.ConfigurationSectionPoint {
+    margin-top: 10px;
+}
+
+/* Configuration Dialog End */
+/* Add Link Start */
+
+#AddLinkTable {
+    width: 570px;
+    table-layout: fixed;
+    border-spacing: 0;
+    border-collapse: collapse;
+}
+
+#AddLinkTable td:first-child {
+    width: 85px;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+#AddLinkTable input {
+    border: 1px solid #423939;
+    padding: 5px;
+    width: 460px;
+}
+
+#AddLinkTable td {
+    padding: 2px;
+}
+
+/* Add Link End */
+/* Big Taov Start */
+
+#big-taov-hosts, #big-taov-services {
+    position: absolute;
+    font-size: 16px;
+    letter-spacing: 0px;
+}
+
+#big-taov-hosts {
+    width: 350px;
+    height: 185px;
+}
+
+#big-taov-services {
+    left: 378px;
+    right: 18px;
+    height: 185px;
+}
+
+#big-taov-header {
+    float: left;
+    font-size: 12px;
+}
+
+#big-taov-hosts-content, #big-taov-services-content {
+    float: left;
+    overflow-y: auto;
+    width: 100%;
+    height: 90%;
+}
+
+.ui-taov-tile {
+    width: 20px;
+    height: 20px;
+    display: block;
+    margin: 2px;
+    float: left;
+}
+
+/* Big Taov End */
+/* Slim Taov Start */
+
+#Nodes {
+    margin-top: 0px;
+    padding: 5px;
+    font-size: 12px;
+}
+
+#Nodes a {
+    text-decoration: none;
+}
+
+#Nodes table td {
+    padding: 3px;
+}
+
+#Nodes table {
+    border-spacing: 4px 0px;
+    margin-right: 8px;
+}
+
+.taov_default, .taov_default a {
+    background-color: #fff;
+    color: #000;
+}
+
+.taov_default {
+    border: 1px solid #423939;
+}
+
+.taov_ok, .taov_ok a {
+    background-color: #088A08;
+    border: 1px solid #088A08;
+    color: #fff;
+}
+
+.taov_cr, .taov_cr a {
+    background-color: #E5442D;
+    border: 1px solid #E5442D;
+    color: #fff;
+}
+
+.taov_un, .taov_un a {
+    background-color: #C800C8;
+    border: 1px solid #C800C8;
+    color: #fff;
+}
+
+.taov_wa, .taov_wa a {
+    background-color: orange;
+    border: 1px solid orange;
+    color: #fff;
+}
+
+#ServicePie, #HostPie {
+    float: left;
+}
+
+#HeaderServicePie, #HeaderHostPie {
+    font-size: 12px;
+}
+
+/* Slim Taov End */
+/* Sidebar Start */
+
+#Sidebar input[type=text] {
+    background-color: #82abcc;
+    padding: 7px;
+    border: 2px solid #004279;
+    color: #004279;
+    width: 225px;
+    font-size: 16px;
+    margin-top: 50px;
+}
+
+#SidebarSmall {
+    position: fixed;
+    right: 0;
+    top: 25px;
+    height: 80px;
+    width: 30px;
+    cursor: pointer;
+    z-index: 10;
+}
+
+#Sidebar {
+    position: fixed;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    width: 400px;
+    background-color: #423939;
+    display: none;
+    border-left: 2px solid #fff;
+    z-index: 30;
+}
+
+#SidebarContent {
+    display: none;
+}
+
+#SidebarSearch {
+    margin-top: 75px;
+    margin-left: 65px;
+}
+
+#SidebarSearchFilter {
+    margin-top: 15px;
+}
+
+.DivSearchFilter {
+    width: 366px;
+    padding: 15px;
+    border: 2px solid #82abcc;
+    font-size: 24px;
+}
+
+.DivSearchFilter:hover {
+    background-color: #004c8a;
+    cursor: pointer;
+}
+
+.DivSearchFilter span {
+    position: absolute;
+    margin-left: 15px;
+    margin-top: 13px;
+    letter-spacing:-2px;
+}
+
+#SearchImg {
+    width: 45px;
+    margin-left: 50px;
+    margin-top: 2px;
+}
+/* Bottom Sidebar */
+
+#SidebarBottomSmall {
+    position: fixed;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    height: 60px;
+    cursor: pointer;
+}
+
+#SidebarBottom {
+    position: fixed;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    height: 850px;
+    background-image: url(../images/bg.png);
+    display: none;
+    padding: 10px;
+}
+
+#SidebarBottomContent {
+    display: none;
+}
+
+#Title {
+    position: absolute;
+    top: 35px;
+    left: 65px;
+    font-size: 32px;
+    letter-spacing:-3px;
+    cursor: default;
+}
+
+#SubTitle {
+    position: absolute;
+    top: 100px;
+    left: 65px;
+    font-size: 16px;
+}
+
+/* Sidebar End */
+/* Liveticker Start */
+
+#div-liveticker {
+    float: right;
+    margin-right: 10px;
+    margin-top: -5px;
+}
+
+#div-liveticker img {
+    width: 50px;
+    display: none;
+}
+
+.ui-lt-dialog {
+    border: 2px solid orange;
+}
+
+.ui-lt-dialog .ui-dialog-title {
+    color: orange;
+}
+
+#LivetickerELine {
+    border: 1px solid #423939;
+    padding: 5px;
+    margin: 3px;
+}
+
+#LivetickerELine img {
+    width: 50px;
+    margin: 10px;
+}
+
+#LivetickerELine span.HostName, #LivetickerELine span.ServiceName {
+    position: absolute;
+    font-size: 16px;
+}
+
+#LivetickerELine span.HostName {
+    margin-top: 14px;
+}
+
+#LivetickerELine span.ServiceName {
+    margin-top: 34px;
+}
+
+#LivetickerELine span.Output {
+    margin-top: 0px;
+    font-size: 12px;
+    display: block;
+}
+
+#LivetickerELine span.Timestamp {
+    margin-top: 0px;
+    font-size: 12px;
+    float: right;
+    padding: 5px;
+}
+
+/* Liveticker End */
+/* Managed Service Start */
+
+#MS_CustActions { padding: 15px;  }
+#MS_CustActions button { width: 214px; margin-top: 3px; margin-bottom: 2px; }
+
+/* Who is logged in */
+#ManagedServiceMenus { position: absolute; width: 225px; top: 250px; bottom: 0px; left: 10px; }
+#WhosLoggedInH { position: absolute; width: 205px; top: -37px; left: -2px; font-size: 12px; color: #000; padding: 10px; height: 13px; }
+#WhosLoggedIn { width: 225px; overflow-y: auto; }
+#LoggedInUser { width: 219px; height: 50px; border: 1px solid transparent; cursor: default; font-size: 16px; letter-spacing: -1px; margin-left: 2px; margin-top: 2px; margin-right: 2px; margin-bottom: 2px; }
+#LoggedInUser:hover { background-color: #fff; border: 1px solid #423939; }
+#LoggedInUser img { margin-right: 5px;  }
+#LoggedInUser span#LIU_Head { float: left; cursor: default; margin-top: 6px; }
+#LoggedInUser span.ui-icon { float: left; cursor: pointer; margin-top: 9px; }
+#LoggedInUser span:last-child { color: #423939; font-size: 12px; font-weight: bold; letter-spacing: 0px; }
+#WhosLoggedIn span#WLI_Cont { font-size: 14px; color: #000; float: left; width: 203px; }
+
+/* Managed Service actions (mid column) */
+#ManagedServiceActionsPageSelected { padding: 3px; }
+#ManagedServiceActions { position: absolute; top: 250px; bottom: 0px; left: 245px; right: 410px; overflow-y: auto; }
+#ManagedServiceActionsPage { height: 33px; position: absolute; top: 200px; left: 245px; right: 410px; text-align: center; }
+#ManagedServiceActionsE { padding: 5px; background-color: #fff; border: 1px solid #423939; margin-left: 2px; margin-right: 2px; margin-top: 2px; margin-bottom: 2px; }
+#ManagedServiceActionsE:first-child {  }
+#ManagedServiceActionsE:last-child {  }
+#ManagedServiceActionsE:focus, #ManagedServiceActionsE:hover { -webkit-box-shadow: 0px 0px 2px 0px #423939; -moz-box-shadow: 0px 0px 2px 0px #423939; box-shadow: 0px 0px 2px 0px #423939 }
+#ManagedServiceActionsE table { table-layout: fixed; border-spacing: 0; border-collapse: collapse; font-size: 14px; cursor: default; }
+#ManagedServiceActionsE img { width: 75px; height: 75px; border: 1px solid #423939; margin-left: 5px; background-color: #423939;}
+#ManagedServiceActionsH { margin-top: 0px; margin-left: 10px; font-size: 16px; letter-spacing: -1px; }
+#ManagedServiceActionsD { margin-top: 0px; margin-left: 15px; font-size: 12px; }
+#ManagedServiceActionsT { margin-top: 15px; margin-left: 25px; font-size: 14px; }
+#ManagedServiceActionsF { margin-top: 15px; margin-left: 15px; margin-bottom: 5px; font-size: 12px; }
+#EskDscD { color: #423939; }
+#EskDscE { color: #E5442D; }
+
+/* managed service customer info */
+
+#ManagedServiceInfos { position: absolute; width: 390px; top: 250px; bottom: 0px; right: 10px; overflow-y: auto; }
+#ManagedServiceInfosH { position: absolute; width: 370px; top: 213px; height: 13px; right: 10px; font-size: 12px; color: #000; padding: 10px; }
+#MSI_Cont { width: 100%; overflow-y: auto; height: 100%; }
+#CustomerInfoEntry { border: 1px solid #423939; padding: 5px; background-color: #fff; cursor: pointer; margin-bottom: 2px; margin-top: 2px; margin-left: 2px; margin-right: 2px;}
+#CustomerInfoEntryHeader { display: block; font-size: 18px; letter-spacing: -1px; }
+#CustomerInfoEntryContent { display: block; font-size: 12px; font-weight: bold; color: 423939; margin-top: -20px; }
+#ShowCustomer #ccommE { border: 1px solid #423939; background-color: #fff; color: #000; width: 375px; height: 443px; padding: 5px; margin-top: 3px; margin-bottom: 10px; resize: none; font-size: 16px; font-weight: normal; overflow-y: auto; white-space: pre-wrap; }
+
+/* menu sidebar */
+#MenuSidebar { display: none; position: absolute; width: 125px; top: 0; bottom: 0; left: 0px; border-right: 1px solid #423939; background-image: url(../images/bg.png); -webkit-box-shadow: 0px 0px 2px 0px #423939; -moz-box-shadow: 0px 0px 2px 0px #423939; box-shadow: 0px 0px 2px 0px #423939; }
+#MenuSidebar span.icon { display:block; background: #fff; border:1px solid #423939; cursor: pointer; margin: 4px; padding: 17px; }
+#MenuSidebar .UserDesc { font-size: 12px; margin-bottom: 5px; margin-top: 25px; color: #000; }
+#MenuSidebarSmall { position: absolute; width: 25px; top: 150px; bottom: 150px; left:0; z-index: 30; cursor: pointer; }
+#MenuSidebarSmall:hover { border-right: 1px dotted #004c8a; border-bottom: 1px dotted #004c8a; border-top: 1px dotted #004c8a; }
+
+
+#MS_srv { height: 85px; }
+#MS_cc { height: 285px; }
+#MS_vt { height: 225px; }
+
+#StatusSummaryHead { position: absolute; top: 290px; left: 10px; right: 10px; border: 2px solid #82abcc; height: 33px; background-color: #004c8a;}
+#StatusSummary { position: absolute; top: 123px; left: 10px; right: 10px; height: 160px;}
+#HostStatusSummary { left: 2px; width: 246px;}
+#ServiceStatusSummary { left: 255px; right: 2px;}
+#ServiceStatusSummary, #HostStatusSummary { position: absolute; margin-top: 23px; height: 133px; overflow-x: hidden; overflow-y: auto;} 
+#HostStatusSummaryHead, #ServiceStatusSummaryHead { position: absolute; margin-top: 6px; font-size: 12px; cursor: default;}
+#HostStatusSummaryHead { left: 10px;}
+#ServiceStatusSummaryHead { left: 265px;}
+#SummaryBox { display: block; border: 1px solid #82abcc; width: 20px; height: 20px; float: left; margin: 1px; cursor: default;}
+#ServicesHost { position: absolute; margin-top: -20px; right: 200px; left: 800px; height: 48px; overflow-y: hidden; } 
+#HostGridSelect { position: absolute; left: 12px; top: 293px; width: 450px; height: 31px; color: white; background-color: #004c8a; z-index: 5; border-right: 1px dotted #82abcc; }
+#ShowGridSearchBar { position: absolute; top: 10px; right: 300px; color: white; cursor: pointer; font-size: 12px; width: 200px; z-index:5; text-align: right; }
+.hcr { background-color: #9c1919; }
+.hun { background-color: #6c006c; }
+.hwa { background-color: orange; }
+.hok { background-color: #088A08; }
+.hpe { background-color: grey; }
+.hack { background-color: #5D5D5D; }
+
+/* Create Customer */
+#ContractTypeDiv1,#ContractTypeDiv2,#ContractTypeDiv3,#ContractTypeDiv4,#ContractTypeDiv5,#ContractTypeDiv6,#cnameE { margin-top: 3px; margin-bottom: 5px; }
+#ContractsDiv1 { border: 1px solid #423939; background-color: #fff; color: #000; width: 375px; height: 340px; padding: 5px; margin-top: 3px; margin-bottom: 10px; resize: none; font-size: 16px; font-weight: normal; overflow-y: auto; white-space: pre-wrap; }
+#ContractsDivTable { table-layout: fixed; border-spacing: 0; border-collapse: collapse; font-size: 14px; cursor: default; } 
+#CreateCustomerRight select,#CreateCustomerLeft select,#DeleteCustomerLeft select { border: 1px solid #423939; background-color: #fff; color: #000; padding: 4px; width: 387px; cursor: pointer; }
+#CreateCustomerRight input { border: 1px solid #423939; background-color: #fff; color: #000; padding: 5px; margin-left: 2px; margin-right: 2px; margin-bottom: 10px; width: 113px; font-size: 1em; }
+
+#CreateCustomerLeft,#CreateCustomerMiddle,#CreateCustomerRight { position: absolute; width: 390px; height: 490px; }
+#CreateCustomerLeft { left: 10px; }
+#CreateCustomerMiddle { left: 405px; }
+#CreateCustomerRight { left: 800px; }
+#CreateCustomerLeft input { border: 1px solid #423939; background-color: #fff; color: #000; width: 375px; padding: 5px; margin-top: 3px; margin-bottom: 10px; }
+#caddress { border: 1px solid #423939; background-color: #fff; color: #000; width: 375px; height: 212px; padding: 5px; margin-top: 3px; margin-bottom: 10px; resize: none; font-size: 16px; font-weight: normal; overflow-y: auto; white-space: pre-wrap; font-size: 1em; cursor: text; }
+#caddressE { border: 1px solid #423939; background-color: #fff; color: #000; width: 375px; height: 217px; padding: 5px; margin-top: 3px; margin-bottom: 10px; resize: none; font-size: 16px; font-weight: normal; overflow-y: auto; white-space: pre-wrap; font-size: 1em; cursor: text; }
+#CreateCustomerLeft table tr td:first-child,#CreateCustomerMiddle table tr td:first-child,#CreateCustomerRight table tr td:first-child, #DeleteCustomerLeft table tr td:first-child { font-size: 12px; font-weight: bold; }
+
+#CT_Outer { background-color: #fff; border: 1px solid #423939; width: 97%; margin-bottom: 5px; padding: 5px; cursor: default; }
+#CT_Outer:hover { background-color: #fff;  }
+#CT_Head,#CT_AN,#CT_PR { font-size: 12px; color: #000; padding: 1px; }
+#CT_Head span:last-child,#CT_AN span:last-child,#CT_PR span:last-child { font-size: 12px; color: #000; }
+#ContractsDelete { margin-bottom: -20px; float: right; cursor: pointer; }
+#DeleteCustomerLeft { padding-left: 30px; padding-right: 25px; padding-top: 15px; padding-bottom: 10px; font-size: 12px; }
+#ccomm { width: 385px; cursor: text; }
+#ccomm div.jqte { height: 485px; border: 1px solid #423939; cursor: text; }
+#ccomm .jqte_editor { height: 413px; font-size: 1em; font-weight: normal; }
+#ccomm .jqte_source { height: 433px; font-size: 1em; font-weight: normal; }
+
+#ccommE { width: 385px; cursor: text; }
+#ccommE div.jqte { height: 485px; border: 1px solid #423939; cursor: text; }
+#ccommE .jqte_editor { height: 413px; font-size: 1em; font-weight: normal; }
+#ccommE .jqte_source { height: 433px; font-size: 1em; font-weight: normal; }
+
+#ShowCustomer #ccommE { height: 477px; font-size: 12px; }
+#ShowCustomer #ContractsDiv1 { height: 477px; font-size: 12px; border: 0; }
+
+/* Create Contract */
+#CreateContractTypeLeft { width: 550px; height: 475px; padding: 5px; }
+#CreateContractTypeLeft table { table-layout: fixed; border-spacing: 0; border-collapse: collapse; font-size: 12px; cursor: default; width: 550px; } 
+#CreateContractTypeLeft table tr:first-child,#CreateContractTypeLeft table tr:first-child + tr + tr,#CreateContractTypeLeftE table tr:first-child { font-size: 12px; font-weight: bold; }
+#CreateContractTypeLeft input { border: 1px solid #423939; background-color: #fff; color: #000; width: 255px; padding: 4px; margin-top: 3px; margin-bottom: 10px; }
+#CreateContractTypeLeft select { border: 1px solid #423939; background-color: #fff; color: #000; padding: 4px; width: 255px; }
+#cotrlnE { border: 1px solid #423939; background-color: #fff; color: #000; width: 255px; padding: 5px; cursor: text; }
+#CreateContractTypeLeftE { padding-left: 40px; padding-top: 20px;  } 
+#CreateContractTypeLeftE table { table-layout: fixed; border-spacing: 0; border-collapse: collapse; font-size: 12px; cursor: default; width: 400px; }
+#cotrsnD { background-color: #fff; color: #000; width: 385px; margin-top: 3px; margin-bottom: 10px; }
+#CreateContractTypeLeftE select { border: 1px solid #423939; background-color: #fff; color: #000; padding: 4px; width: 385px; }
+#mactionsE,#mactions { width: 540px; border: 1px solid #423939; }
+#mactionsE div.jqte,#mactions div.jqte { height: 395px; cursor: text; }
+#mactionsE .jqte_editor,#mactionsE .jqte_source,#mactions .jqte_editor,#mactions .jqte_source { height: 346px; font-size: 12px; }
+
+/* Create Service Entries */
+#CreateServiceEntryLeft { float: right; width: 730px; height: 525px; margin-right: 10px; padding-top: 10px; }
+#CreateServiceEntryRight { float: left; width: 415px; height: 525px; }
+#CreateServiceEntryLeftMH div.jqte { height: 105px; cursor: text; border: 1px solid #423939; }
+#CreateServiceEntryLeftMH .jqte_editor,#CreateServiceEntryLeftMH .jqte_source { height: 56px; font-size: 12px; }
+#CreateServiceEntryLeftMC div.jqte { height: 670px; cursor: text; border: 1px solid #423939; }
+#CreateServiceEntryLeftMC .jqte_editor,#CreateServiceEntryLeftMC .jqte_source { height: 621px; font-size: 12px; }
+#CreateServiceEntryLeftMF,#CreateServiceEntryLeftMH { display: none; }
+#CreateServiceEntryLeftMF div.jqte { height: 155px; cursor: text; border: 1px solid #423939; }
+#CreateServiceEntryLeftMF .jqte_editor,#CreateServiceEntryLeftMF .jqte_source { height: 106px; font-size: 12px; }
+
+#CreateServiceEntryT,#CreateServiceEntryC,#CreateServiceEntryA { margin-left: 15px; font-size: 12px; }
+#CreateServiceEntryU input,#CreateServiceEntryD input,#CreateServiceEntryS input,#CreateServiceEntryM input { border: 1px solid #423939; background-color: #fff; color: #000; padding: 5px; padding-left: 7px; width: 373px;  margin-left: 15px; font-size: 12px; }
+#CreateServiceEntryC select,#CreateServiceEntryT select { border: 1px solid #423939; background-color: #fff; color: #fff; padding: 4px; width: 387px; color: #000; }
+#CreateServiceEntryA select { border: 1px solid #423939; background-color: #fff; color: #fff; padding: 4px; width: 387px; color: #000; }
+#CreateServiceEntryT #CSEDsc,#CreateServiceEntryC #CSEDsc,#CreateServiceEntryA #CSEDsc { margin-bottom: 3px; margin-top: 6px; font-size: 12px; font-weight: bold; }
+#CreateServiceEntryU #CSEDsc,#CreateServiceEntryS #CSEDsc,#CreateServiceEntryD #CSEDsc { margin-bottom: 3px; margin-top: 6px; font-size: 12px; font-weight: bold; margin-left: 15px; }
+#CreateServiceEntryU { margin-top: 13px; }
+#CSEDsc2 { margin-top: 20px; margin-left: 15px; margin-bottom: 10px; font-size: 12px; font-weight: bold; z-index: 5; }
+#CSEDsc3 { font-size: 12px; font-weight: bold; margin-left: 15px; margin-bottom: 3px; margin-top: 5px; color: #000; }
+#InANt { position: absolute; top: 368px; left: 7px; font-size: 12px; font-weight: bold; }
+#InCCt { position: absolute; top: 399px; left: 7px; font-size: 12px; font-weight: bold; }
+#InSubt { position: absolute; top: 430px; left: 6px; font-size: 12px; font-weight: bold; }
+#InAN,#InCC { margin-bottom: 3px; }
+#CSEDsc2 input { position: absolute; left: -5px; margin-top: -1px; width: 10px; }
+#CSEDsc3 input { position: absolute; left: -5px; margin-top: -1px; width: 10px; }
+#CSEDsc3 span {  }
+#CSEDscOverLay { position: absolute; width: 444px; height: 305px; top: 355px; left: 0; z-index: 5; background-color: #fff; opacity: 0.5; filter: Aplha(Opacity=50);}
+
+/* Managed Service End */
+/* Custom */
+.ui-autocomplete { max-height: 500px; width: 200px; overflow-y: auto; overflow-x: hidden; }
+
+/* Pagination Start */
+ul.simple-pagination { list-style: none; }
+.simple-pagination { display: block; overflow: hidden; padding: 0 5px 5px 0; }
+.simple-pagination ul { list-style: none; padding: 0; display: block; }
+.simple-pagination li { list-style: none; padding: 0; margin: 0; float: left; }
+.compact-theme a, .compact-theme span { text-decoration: none; float: left; color: #000; font-size:12px; line-height:24px; font-weight: normal; text-align: center; border: 1px solid #423939; min-width: 14px; padding: 0 7px; background: #fff; margin-left: 1px; margin-right: 1px; }
+.compact-theme span:focus, .compact-theme span:hover { -webkit-box-shadow: 0px 0px 2px 0px #423939; -moz-box-shadow: 0px 0px 2px 0px #423939; box-shadow: 0px 0px 2px 0px #423939 }
+.compact-theme a:focus, .compact-theme a:hover { -webkit-box-shadow: 0px 0px 2px 0px #423939; -moz-box-shadow: 0px 0px 2px 0px #423939; box-shadow: 0px 0px 2px 0px #423939 }
+.compact-theme .next { border-right: 1px solid #423939; }
+.compact-theme .current { background: #fff; cursor: default; -webkit-box-shadow: 0px 0px 2px 0px #423939; -moz-box-shadow: 0px 0px 2px 0px #423939; box-shadow: 0px 0px 2px 0px #423939 }
+.compact-theme .ellipse { background: #fff; padding: 0 10px; cursor: default; }
+/* Pagination End */
+/* Monitoring Start */
+
+div#div-monitoring {
+    position: absolute;
+    overflow-y: auto;
+    bottom: 0;
+    top: 0;
+    left: 10px;
+    right: 10px;
+}
+
+div#div-monitoring-entry {
+    margin: 2px;
+    padding: 5px;
+    border: 1px solid #423939;
+    width: 616px;
+    float: left; 
+    height: 95px;
+}
+
+div#div-monitoring-entry img.img-h {
+    width: 50px;
+    margin: 22px 7px 6px 3px;
+    
+}
+
+div#div-monitoring-entry span.head-h {
+    position: absolute;
+    margin-top: 36px;
+}
+
+div#div-monitoring-entry span.content-h {
+    float: right;
+    width: 338px;
+    height: 95px;
+    overflow-y: auto;
+}
+
+/* Monitoring End */
+/* Service Menü Start  */
+
+#ServiceDetail #ServiceTabs1, #ServiceDetail #ServiceTabs2, #ServiceDetail #ServiceTabs3 { height: 650px; }
+#ServiceDetail #CreateServiceEntryLeft { width: 700px; }
+#ServiceDetail #CSEDscOverLay { top: 400px; }
+#ServiceDetail #InANt { top: 415px; }
+#ServiceDetail #InCCt { top: 446px; }
+#ServiceDetail #InSubt { top: 477px; }
+#ServiceDetail #CreateServiceEntryLeftMC div.jqte { height: 640px; }
+#ServiceDetail #CreateServiceEntryLeftMC .jqte_editor,#CreateServiceEntryLeftMC .jqte_source { height: 591px; }
+#ServiceDetail #ServiceHistory { border: 1px solid #423939; position: absolute; }
+#ServiceDetail #ServiceInfo { position: absolute; width: 500px; height: 200px; top: 60px; left: 10px; }
+#ServiceDetail #ServiceReCheck { position: absolute; width: 500px; height: 80px; top: 270px; left: 10px; }
+#ServiceDetail #ServiceDowntime { position: absolute; width: 657px; height: 200px; top: 170px; right: 10px; }
+#ServiceDetail #ServiceAvailability { position: absolute; width: 657px; height: 100px; top: 60px; right: 10px; }
+#ServiceDetail #ServiceHistory { right: 10px; height: 330px; top: 380px; left: 10px; overflow-y: auto; }
+
+#ServiceDetail #ServiceInfo img {position: absolute;margin-top: 18px;width: 75px;height: 75px;margin-left: 30px;}
+#ServiceDetail div#ServiceInfoHt, #ServiceDetail div#ServiceInfoHn, #ServiceDetail div#ServiceInfoAd, #ServiceDetail div#ServiceInfoSn {position: absolute;margin-left: 140px;font-size: 12px;}
+#ServiceDetail div#ServiceInfoHt span:first-child, #ServiceDetail div#ServiceInfoHn span:first-child, #ServiceDetail div#ServiceInfoAd span:first-child, #ServiceDetail div#ServiceInfoSn span:first-child, #ServiceDetail div#ServiceAvailabilityH span:first-child {font-weight: bold;}
+#ServiceDetail div#ServiceInfoHt span:last-child, #ServiceDetail div#ServiceInfoHn span:last-child, #ServiceDetail div#ServiceInfoAd span:last-child, #ServiceDetail div#ServiceInfoSn span:last-child { position: absolute; width: 200px; left: 0px; }
+#ServiceDetail div#ServiceInfoHt {margin-top: 0px;}
+#ServiceDetail div#ServiceInfoHn {margin-top: 40px;}
+#ServiceDetail div#ServiceInfoAd {margin-top: 80px;}
+#ServiceDetail div#ServiceInfoSn {margin-top: 120px;}
+
+#ServiceDetail div#ServiceAvailabilityH, #ServiceDetail div#ServiceReCheckH, #ServiceDetail div#ServiceDowntimeH, #ServiceDetail div#ServiceHistoryH {
+    position: absolute;
+    font-size: 12px;
+}
+
+#ServiceDetail span#ServiceAvailabilityE {
+    display: block;
+    width: 120px;
+    float: left;
+    padding: 7px 15px 7px 15px;
+    font-size: 28px;
+    text-align: center;
+    margin: 2px;
+}
+
+#ServiceDetail #ServiceHistory table {
+    width: 100%;
+    border-spacing:0;
+    border-collapse:collapse;
+    font-size: 12px;
+    table-layout: fixed;
+}
+
+#ServiceDetail #ServiceHistory table tr {
+    border-bottom: 1px solid #423939;
+}
+
+#ServiceDetail #ServiceHistory table tr:last-child {
+    border-bottom: 0;
+}
+
+#ServiceDetail #ServiceHistory table tr:hover {
+    background-color: #ddd;
+}
+
+#ServiceDetail #ServiceHistory table td {
+    padding: 5px;
+}
+
+#ServiceDetail #ServiceHistory table td:first-child {
+    width: 50px;
+}
+
+#ServiceDetail #ServiceHistory table td:last-child {
+    width: 100px;
+}
+
+#ServiceDetail div#ServiceReCheckH {
+    font-weight: bold;
+    left: 5px;
+}
+
+#ServiceDetail div#ServiceDowntimeH {
+    font-weight: bold;
+}
+
+#ServiceDetail div#ServiceHistoryH {
+    font-weight: bold;
+    top: 360px;
+    left: 15px;
+}
+
+#ServiceDetail div#ServiceReCheckP {
+    margin-top: 30px;
+    margin-left: 30px; 
+    font-size: 12px;
+}
+
+#ServiceDetail div#ServiceReCheckP input {
+    width: 250px;
+    margin-left: 5px;
+    height: 15px;
+    font-size: 12px;
+}
+
+#ServiceDetail div#ServiceReCheckP button {
+    position: absolute;
+    left: 380px;
+    top: 30px;
+    font-size: 12px;
+}
+
+#ServiceDetail div#ServiceDowntimeS {
+    position: absolute;
+    margin-top: 50px;
+    margin-left: 30px; 
+    font-size: 12px;
+}
+
+#ServiceDetail div#ServiceDowntimeE {
+    position: absolute;
+    margin-top: 80px;
+    margin-left: 30px; 
+    font-size: 12px;
+}
+
+#ServiceDetail div#ServiceDowntimeS input, #ServiceDetail div#ServiceDowntimeE input {
+    position: absolute;
+    width: 250px;
+    left: 35px;
+    height: 15px;
+    font-size: 12px;
+    margin-top: -5px;
+}
+
+#ServiceDetail div#ServiceDowntimeE button {
+    position: absolute;
+    left: 233px;
+    top: 30px;
+    font-size: 12px;
+}
+
+/* Service Menü End  */

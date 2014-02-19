@@ -5,7 +5,7 @@
 
 function WebUninstaller(id) {
     $.ajax({
-        url: '/installer/exec/IsAlreadyInstalled',
+        url: '/admin/exec/IsAlreadyInstalled',
         dataType: 'json',
         cache: false,
         async: false,
@@ -14,7 +14,7 @@ function WebUninstaller(id) {
                 alert("Es ist keine Version von kVASy System Control installiert.");
             } else {
                 $("#" + id).hide();
-                $('#body').css('height', '825px');
+                $('#body').css('height', '824px');
                 $('#Footer').css('top', '775px');
                 $('#Installer').show();
             }
@@ -27,7 +27,7 @@ function WebUninstaller(id) {
 
 function eraseText(id) {
     document.getElementById(id).value = "";
-    document.getElementById(id).style.color="#fff";
+    document.getElementById(id).style.color="#000";
 }
 
 function execUninstaller() {
@@ -39,7 +39,8 @@ function execUninstaller() {
     $('#n').show();
     $('#h').show();
     $('#Start').hide();
-    Execute("50","Unprepare Repository","UnprepareRepository","UnprepRep");
+    Execute("33","Repository: Unprepare","UnprepareRepository","UnprepRep");
+    Execute("66","Monitoring: Unprepare","UnprepareMonitoring","UnprepMoni");
     $('#ProgressBar').progressbar( "option", { value: 100 });
     //$('#OutputTable').append('<tr><td>Prepare Repository</td><td><div id="PrepRep"></div></td></tr>');
     $('#Abbrechen').hide();
@@ -47,7 +48,7 @@ function execUninstaller() {
 }
 
 function inputBlur(id){
-    document.getElementById(id).style.color="#82abcc";
+    document.getElementById(id).style.color="#666";
     $("#" + id).attr("disabled",true);
 }
 
@@ -64,13 +65,13 @@ function Execute(pv,name,fnct,id) {
     $('#ProgressBar').progressbar( "option", { value: parseInt(pv) });
     $('#OutputTable').append('<tr><td>' + name + '</td><td><div id="' + id + '"></div></td></tr>');
     $.ajax({
-        url: '/installer/exec/' + fnct,
+        url: '/admin/exec/' + fnct,
         dataType: 'json',
         cache: false,
         async: false,
         success: function(json) {
             $('#' + id).html(json.MESSAGE);
-            if (json.EXIT == "1") { $('#' + id).css('color', '#FF6969'); } else { $('#' + id).css('color', '#55E553'); }
+            if (json.EXIT == "1") { $('#' + id).css('color', '#E5442D'); } else { $('#' + id).css('color', '#55E553'); }
         },
         error: function (xhr, thrownError) {
             alert(xhr.status + "::" + thrownError);
