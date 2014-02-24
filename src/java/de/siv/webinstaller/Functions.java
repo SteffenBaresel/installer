@@ -54,6 +54,8 @@ public class Functions {
         st.execute("CREATE TABLE profiles_role_priv_mapping ( RLID BIGSERIAL, PRID BIGSERIAL )");
         st.execute("CREATE TABLE profiles_user_task_mapping ( UUID BIGSERIAL, TKID BIGSERIAL )");
         st.execute("CREATE TABLE profiles_customer_task_mapping ( CUID BIGSERIAL, TKID BIGSERIAL )");
+        st.execute("CREATE TABLE profiles_customer_role_mapping ( CUID BIGSERIAL, RLID BIGSERIAL )");
+        st.execute("CREATE TABLE profiles_contract_role_mapping ( CCID BIGSERIAL, RLID BIGSERIAL )");
         /*
          * Info Tables
          */
@@ -79,6 +81,12 @@ public class Functions {
          * Views
          */
         st.execute("CREATE VIEW autocompletecustomer AS SELECT cuid,cunr,decode(CUNM,'base64') as cunm FROM managed_service_cinfo");
+        /*
+         * Monitoring
+         */
+        st.execute("CREATE TABLE monitoring_host_contract_mapping ( HSTID BIGSERIAL, CCID BIGSERIAL )");
+        st.execute("CREATE TABLE monitoring_host_role_mapping ( HSTID BIGSERIAL, RLID BIGSERIAL )");
+        st.execute("CREATE TABLE monitoring_host_customer_mapping ( HSTID BIGSERIAL, CUID BIGSERIAL )");
         /*
          * Close Connection
          */
@@ -324,6 +332,8 @@ public class Functions {
         st.execute("DROP TABLE profiles_role_priv_mapping CASCADE");
         st.execute("DROP TABLE profiles_user_task_mapping CASCADE");
         st.execute("DROP TABLE profiles_customer_task_mapping CASCADE");
+        st.execute("DROP TABLE profiles_customer_role_mapping CASCADE");
+        st.execute("DROP TABLE profiles_contract_role_mapping CASCADE");
         /*
          * Info Tables
          */
@@ -345,6 +355,12 @@ public class Functions {
         st.execute("DROP TABLE managed_service_cinfo CASCADE");
         st.execute("DROP TABLE managed_service_cservices CASCADE");
         st.execute("DROP TABLE managed_service_ccontracts CASCADE");
+        /*
+         * Monitoring
+         */
+        st.execute("DROP TABLE monitoring_host_contract_mapping CASCADE");
+        st.execute("DROP TABLE monitoring_host_role_mapping CASCADE");
+        st.execute("DROP TABLE monitoring_host_customer_mapping CASCADE");
         /*
          * Close Connection
          */
@@ -526,21 +542,21 @@ public class Functions {
         st.execute("CREATE TABLE monitoring_info_host ( HSTID BIGSERIAL UNIQUE, HSTSN varchar(250), HSTLN varchar(1000), IPADDR varchar(100), HTYPID integer, DSC varchar(10000), CHECK_PERIOD varchar(50), INSTID BIGSERIAL, UPTIME decimal, AGENT_VERSION varchar(50), OS varchar(25), CREATED BIGSERIAL )");
         st.execute("CREATE TABLE monitoring_info_service ( SRVID BIGSERIAL UNIQUE, HSTID BIGSERIAL, SRVNA varchar(1000), DSC varchar(10000), INSTID BIGSERIAL, CHECK_PERIOD varchar(50), CREATED BIGSERIAL )");
         st.execute("CREATE TABLE monitoring_oracle_database_info ( DBID BIGSERIAL UNIQUE, HSTID BIGSERIAL, SID varchar(10), TYPE varchar(10), DSC varchar(10000), CHECK_PERIOD varchar(50), SRVID BIGSERIAL, CREATED BIGSERIAL )");
-        st.execute("CREATE TABLE monitoring_oracle_database_status ( DBSID BIGSERIAL UNIQUE, DBID BIGSERIAL, STATUS varchar(15), BLOCKED varchar(15), LOGINS varchar(15), STARTMODE varchar(15), DATAFILES smallint, CONTROLFILES smallint, REDOLOGFILES smallint, INV_INDIZES smallint, INV_PART smallint, INV_REG_COMP smallint, INV_OBJECTS smallint, SESSION varchar(10), PROCESS varchar(10), BLOCKKORRUPTION smallint, RMANPROBLEMS smallint, CLUSERS smallint, LSESSIONS smallint, WAALERTS smallint, CRALERTS smallint, UNALERTS smallint, REDOLOGSSWITCH decimal, PRTBPS decimal, OCC decimal, DBG decimal, PRTIOR decimal, DBC decimal, PWTBPS decimal, PWTIOR decimal, CPU_ORA varchar(20), WAIT varchar(20), COMMIT varchar(20), CPU_ORA_WAIT varchar(20), CPU_TOTAL varchar(20), READIO varchar(20), CPU_OS varchar(20), CREATED BIGSERIAL )");
+        st.execute("CREATE TABLE monitoring_oracle_database_status ( DBSID BIGSERIAL UNIQUE, DBID BIGSERIAL, STATUS varchar(15), BLOCKED varchar(15), LOGINS varchar(15), STARTMODE varchar(15), DATAFILES smallint, CONTROLFILES smallint, REDOLOGFILES smallint, INV_INDIZES smallint, INV_PART smallint, INV_REG_COMP smallint, INV_OBJECTS smallint, SESSION varchar(10), PROCESS varchar(10), BLOCKKORRUPTION smallint, RMANPROBLEMS smallint, CLUSERS smallint, LSESSIONS smallint, WAALERTS smallint, CRALERTS smallint, UNALERTS smallint, REDOLOGSSWITCH decimal, PRTBPS decimal, OCC decimal, DBG decimal, PRTIOR decimal, DBC decimal, PWTBPS decimal, PWTIOR decimal, CPU_ORA varchar(20), WAIT varchar(20), COMMIT varchar(20), CPU_ORA_WAIT varchar(20), CPU_TOTAL varchar(20), READIO varchar(20), CPU_OS varchar(20), ACK BOOLEAN, ACKID BIGSERIAL, DTM BOOLEAN, DTMID BIGSERIAL, CREATED BIGSERIAL )");
         st.execute("CREATE TABLE monitoring_oracle_database_status_history ( DBSHID BIGSERIAL UNIQUE, DBID BIGSERIAL, STATUS varchar(15), BLOCKED varchar(15), LOGINS varchar(15), STARTMODE varchar(15), DATAFILES smallint, CONTROLFILES smallint, REDOLOGFILES smallint, INV_INDIZES smallint, INV_PART smallint, INV_REG_COMP smallint, INV_OBJECTS smallint, SESSION varchar(10), PROCESS varchar(10), BLOCKKORRUPTION smallint, RMANPROBLEMS smallint, CLUSERS smallint, LSESSIONS smallint, WAALERTS smallint, CRALERTS smallint, UNALERTS smallint, REDOLOGSSWITCH decimal, PRTBPS decimal, OCC decimal, DBG decimal, PRTIOR decimal, DBC decimal, PWTBPS decimal, PWTIOR decimal, CPU_ORA varchar(20), WAIT varchar(20), COMMIT varchar(20), CPU_ORA_WAIT varchar(20), CPU_TOTAL varchar(20), READIO varchar(20), CPU_OS varchar(20), CREATED BIGSERIAL )");
         st.execute("CREATE TABLE monitoring_oracle_database_tablespace ( DBTSID BIGSERIAL UNIQUE, DBID BIGSERIAL, TSNA varchar(25), TSSTATE varchar(25), TSUSAGE varchar(25), TSSIZE varchar(25), TSMAXSIZE varchar(25), TSFRAG varchar(25), CREATED BIGSERIAL)");
         st.execute("CREATE TABLE monitoring_oracle_database_fra ( FRAID BIGSERIAL UNIQUE, DBID BIGSERIAL, PATH varchar(150), SIZE varchar(25), USAGE varchar(25), REC varchar(25), FILES varchar(25), CREATED BIGSERIAL)");
         st.execute("CREATE TABLE monitoring_oracle_middleware_info ( MWID BIGSERIAL UNIQUE, HSTID BIGSERIAL, TYPE varchar(25), PORT varchar(15), DSC varchar(10000), CHECK_PERIOD varchar(50), SRVID bigserial, CREATED BIGSERIAL )");
-        st.execute("CREATE TABLE monitoring_oracle_middleware_status ( MWSID BIGSERIAL UNIQUE, MWID BIGSERIAL, TYPE varchar(25), MODE varchar(25), NAME varchar(50), STATUS varchar(50), CREATED BIGSERIAL )");
+        st.execute("CREATE TABLE monitoring_oracle_middleware_status ( MWSID BIGSERIAL UNIQUE, MWID BIGSERIAL, TYPE varchar(25), MODE varchar(25), NAME varchar(50), STATUS varchar(50), ACK BOOLEAN, ACKID BIGSERIAL, DTM BOOLEAN, DTMID BIGSERIAL, CREATED BIGSERIAL )");
         st.execute("CREATE TABLE monitoring_oracle_middleware_status_history ( MWSHID BIGSERIAL UNIQUE, MWID BIGSERIAL, TYPE varchar(25), MODE varchar(25), NAME varchar(50), STATUS varchar(50), CREATED BIGSERIAL )");
-        st.execute("CREATE TABLE monitoring_host_contract_mapping ( HSTID BIGSERIAL, CCID BIGSERIAL )");
-        st.execute("CREATE TABLE monitoring_host_role_mapping ( HSTID BIGSERIAL, CCID BIGSERIAL )");
         st.execute("CREATE TABLE monitoring_performance ( PID BIGSERIAL UNIQUE, HSTID BIGSERIAL, SRVID BIGSERIAL, APPID BiGSERIAL, CLASS varchar(100), KEY varchar(100), NAME varchar(100), DSC varchar(100), USAGE varchar(100), AVAIL varchar(100), ALLOC varchar(100), CREATED BIGSERIAL)");
         st.execute("CREATE TABLE monitoring_availability ( AID BIGSERIAL UNIQUE, SRVID BIGSERIAL, APPID BiGSERIAL, TIMEOK decimal, TIMEWA decimal, TIMECR decimal, TIMEUN decimal, CREATED BIGSERIAL )");
-        st.execute("CREATE TABLE monitoring_status ( SID BIGSERIAL UNIQUE, SRVID BIGSERIAL, APPID BiGSERIAL, OUTPUT varchar(100000), LONG_OUTPUT varchar(100000), CURRENT_STATE smallint, LAST_STATE smallint, LAST_CHECK BIGSERIAL, NEXT_CHECK BIGSERIAL, LAST_TIME_OK BIGSERIAL, LAST_TIME_WA BIGSERIAL, LAST_TIME_CR BIGSERIAL, LAST_TIME_UN BIGSERIAL, PERCENT_STATE_CHANGE smallint, PERF_DATA varchar(10000), CREATED BIGSERIAL )");
-        st.execute("CREATE TABLE monitoring_status_history ( SHID BIGSERIAL UNIQUE, SRVID BIGSERIAL, APPID BiGSERIAL, OUTPUT varchar(100000), LONG_OUTPUT varchar(100000), CURRENT_STATE smallint, LAST_STATE smallint, PERF_DATA varchar(10000), CREATED BIGSERIAL )");
-        st.execute("CREATE TABLE monitoring_task ( TID BIGSERIAL UNIQUE, TYPE smallint, TARGET smallint, ERROR smallint, DONE BOOLEAN, INSTID BIGSERIAL )");
+        st.execute("CREATE TABLE monitoring_status ( SID BIGSERIAL UNIQUE, HSTID BIGSERIAL, SRVID BIGSERIAL, APPID BIGSERIAL, OUTPUT varchar(100000), LONG_OUTPUT varchar(100000), CURRENT_STATE smallint, LAST_STATE smallint, LAST_CHECK BIGSERIAL, NEXT_CHECK BIGSERIAL, LAST_TIME_OK BIGSERIAL, LAST_TIME_WA BIGSERIAL, LAST_TIME_CR BIGSERIAL, LAST_TIME_UN BIGSERIAL, PERCENT_STATE_CHANGE smallint, PERF_DATA varchar(10000), ACK BOOLEAN, ACKID BIGSERIAL, DTM BOOLEAN, DTMID BIGSERIAL, CREATED BIGSERIAL )");
+        st.execute("CREATE TABLE monitoring_status_history ( SHID BIGSERIAL UNIQUE, HSTID BIGSERIAL, SRVID BIGSERIAL, APPID BIGSERIAL, OUTPUT varchar(100000), LONG_OUTPUT varchar(100000), CURRENT_STATE smallint, LAST_STATE smallint, PERF_DATA varchar(10000), CREATED BIGSERIAL )");
+        st.execute("CREATE TABLE monitoring_task ( TID BIGSERIAL UNIQUE, TYPE smallint, HSTID BIGSERIAL, SRVID BIGSERIAL, ERROR smallint, DONE BOOLEAN, USR VARCHAR(50), TSSTART BIGSERIAL, TSEND BIGSERIAL, COMMENT VARCHAR(10000), INSTID BIGSERIAL )");
         st.execute("CREATE TABLE monitoring_state_change ( SCID BIGSERIAL, HSTID BIGSERIAL, SRVID BIGSERIAL, STATE SERIAL, LAST_STATE SERIAL, OUTPUT varchar(100000), NEW_PROBLEM SERIAL, MAIL SERIAL, CREATED BIGSERIAL )");
+        st.execute("CREATE TABLE monitoring_acknowledge ( ACKID BIGSERIAL, TS BIGSERIAL, USR VARCHAR(50), COMMENT VARCHAR(10000), HSTID BIGSERIAL, SRVID BIGSERIAL, APPID BIGSERIAL, CREATED BIGSERIAL )");
+        st.execute("CREATE TABLE monitoring_downtime ( DTMID BIGSERIAL, TSSTART BIGSERIAL, TSEND BIGSERIAL, USR VARCHAR(50), COMMENT VARCHAR(10000), HSTID BIGSERIAL, SRVID BIGSERIAL, APPID BIGSERIAL, CREATED BIGSERIAL )");
         
         /*
          * Close Connection
@@ -620,14 +636,14 @@ public class Functions {
         st.execute("DROP TABLE monitoring_oracle_middleware_info CASCADE");
         st.execute("DROP TABLE monitoring_oracle_middleware_status CASCADE");
         st.execute("DROP TABLE monitoring_oracle_middleware_status_history CASCADE");
-        st.execute("DROP TABLE monitoring_host_contract_mapping CASCADE");
-        st.execute("DROP TABLE monitoring_host_role_mapping CASCADE");
         st.execute("DROP TABLE monitoring_performance CASCADE");
         st.execute("DROP TABLE monitoring_availability CASCADE");
         st.execute("DROP TABLE monitoring_status CASCADE");
         st.execute("DROP TABLE monitoring_status_history CASCADE");
         st.execute("DROP TABLE monitoring_task CASCADE");
         st.execute("DROP TABLE monitoring_state_change CASCADE");
+        st.execute("DROP TABLE monitoring_downtime CASCADE");
+        st.execute("DROP TABLE monitoring_acknowledge CASCADE");
         
         /*
          * Close Connection
