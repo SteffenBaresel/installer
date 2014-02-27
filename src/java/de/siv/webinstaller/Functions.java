@@ -615,7 +615,7 @@ public class Functions {
         st.execute("INSERT INTO class_mailtypes (MTYPD,MTYPH,MTYPT) VALUES ('ACK','System Control ++ Der Service _S_ auf dem Host _H_ wurde von _U_ bearbeitet','&Uuml;bersicht zur Bearbeitung:')");
         st.execute("INSERT INTO class_mailtypes (MTYPD,MTYPH,MTYPT) VALUES ('DTM','System Control ++ Downtime für Service _S_ auf dem Host _H_ wurde von _U_ definiert','&Uuml;bersicht zur Downtime:')");
         st.execute("INSERT INTO class_mailtypes (MTYPD,MTYPH,MTYPT) VALUES ('ALT','++ Alarm ++ System Control ++ Der Status des Service _S_ auf dem Host _H_ ist _A_','&Uuml;bersicht zum Problem:')");
-        st.execute("INSERT INTO class_mailtypes (MTYPD,MTYPH,MTYPT) VALUES ('REK','System Control ++ Der Service _S_ auf dem Host _H_ ist wieder OK.','&Uuml;bersicht zum Problem:')");
+        st.execute("INSERT INTO class_mailtypes (MTYPD,MTYPH,MTYPT) VALUES ('REK','System Control ++ Der Service _S_ auf dem Host _H_ ist wieder OK','&Uuml;bersicht zum Problem:')");
         st.execute("INSERT INTO class_mailtypes (MTYPD,MTYPH,MTYPT) VALUES ('REC','System Control ++ Der Service _S_ auf dem Host _H_ wurde manuell geprüft','Folgende Informationen:')");
         st.execute("INSERT INTO class_mailtypes (MTYPD,MTYPH,MTYPT) VALUES ('DTB','System Control ++ Downtime beendet für Service _S_ auf dem Host _H_','&Uuml;bersicht zur Downtime:')");
         
