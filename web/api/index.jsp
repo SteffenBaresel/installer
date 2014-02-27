@@ -78,6 +78,6 @@
         </font>
         <br></br>
         <hr>
-        <center><font size="1"><b>SIV.AG 2013</b></font></center>
+        <center><font size="1"><b>2014 Steffen Baresel</b></font></center>
     </body>
 </html>

@@ -151,6 +151,7 @@ public class Functions {
         st.execute("INSERT INTO profiles_privilege (PRNM,PRDC) values (encode('managed_services_csw','base64'),encode('Servicesarbeiten eintragen','base64'))");
         st.execute("INSERT INTO profiles_privilege (PRNM,PRDC) values (encode('managed_services_wili','base64'),encode('Wer ist angemeldet','base64'))");
         st.execute("INSERT INTO profiles_privilege (PRNM,PRDC) values (encode('config_mail','base64'),encode('Mail Format Einstellungen','base64'))");
+        st.execute("INSERT INTO profiles_privilege (PRNM,PRDC) values (encode('service_menu','base64'),encode('Anischt des Service Menu','base64'))");
         
         /*
          * Group Role Mapping
@@ -193,6 +194,7 @@ public class Functions {
         st.execute("INSERT INTO profiles_role_priv_mapping (RLID,PRID) values ('1','31')");
         st.execute("INSERT INTO profiles_role_priv_mapping (RLID,PRID) values ('1','32')");
         st.execute("INSERT INTO profiles_role_priv_mapping (RLID,PRID) values ('1','33')");
+        st.execute("INSERT INTO profiles_role_priv_mapping (RLID,PRID) values ('1','34')");
         
         st.execute("INSERT INTO profiles_role_priv_mapping (RLID,PRID) values ('2','1')");
         st.execute("INSERT INTO profiles_role_priv_mapping (RLID,PRID) values ('2','2')");
@@ -216,6 +218,7 @@ public class Functions {
         st.execute("INSERT INTO profiles_role_priv_mapping (RLID,PRID) values ('2','30')");
         st.execute("INSERT INTO profiles_role_priv_mapping (RLID,PRID) values ('2','31')");
         st.execute("INSERT INTO profiles_role_priv_mapping (RLID,PRID) values ('2','32')");
+        st.execute("INSERT INTO profiles_role_priv_mapping (RLID,PRID) values ('2','34')");
         /*
          * Contract types
          */
@@ -557,6 +560,9 @@ public class Functions {
         st.execute("CREATE TABLE monitoring_state_change ( SCID BIGSERIAL, HSTID BIGSERIAL, SRVID BIGSERIAL, STATE SERIAL, LAST_STATE SERIAL, OUTPUT varchar(100000), NEW_PROBLEM SERIAL, MAIL SERIAL, CREATED BIGSERIAL )");
         st.execute("CREATE TABLE monitoring_acknowledge ( ACKID BIGSERIAL, TS BIGSERIAL, USR VARCHAR(50), COMMENT VARCHAR(10000), HSTID BIGSERIAL, SRVID BIGSERIAL, APPID BIGSERIAL, CREATED BIGSERIAL )");
         st.execute("CREATE TABLE monitoring_downtime ( DTMID BIGSERIAL, TSSTART BIGSERIAL, TSEND BIGSERIAL, USR VARCHAR(50), COMMENT VARCHAR(10000), HSTID BIGSERIAL, SRVID BIGSERIAL, APPID BIGSERIAL, CREATED BIGSERIAL )");
+        st.execute("CREATE TABLE monitoring_host_role_mapping ( HSTID BIGSERIAL, RLID BIGSERIAL )");
+        st.execute("CREATE TABLE class_mailtypes ( MTYPID SERIAL UNIQUE, MTYPD varchar(500), MTYPH varchar(500), MTYPT varchar(500) )");
+        st.execute("CREATE TABLE monitoring_mailing ( MAILID BIGSERIAL UNIQUE, DONE BOOLEAN, HSTID BIGSERIAL, SRVID BIGSERIAL, MTYPID BIGSERIAL, USR VARCHAR(50), COMMENT VARCHAR(10000), APPID BIGSERIAL, T1 BIGSERIAL, T2 BIGSERIAL, CREATED BIGSERIAL)");
         
         /*
          * Close Connection
@@ -606,6 +612,13 @@ public class Functions {
         st.execute("INSERT INTO class_hosttypes (HTYPSN,HTYPLN,HTYPICON) VALUES ('PRSE','Proxy Server','collapse')");
         st.execute("INSERT INTO class_hosttypes (HTYPSN,HTYPLN,HTYPICON) VALUES ('FIWA','Firewall','collapse')");
         
+        st.execute("INSERT INTO class_mailtypes (MTYPD,MTYPH,MTYPT) VALUES ('ACK','System Control ++ Der Service _S_ auf dem Host _H_ wurde von _U_ bearbeitet','&Uuml;bersicht zur Bearbeitung:')");
+        st.execute("INSERT INTO class_mailtypes (MTYPD,MTYPH,MTYPT) VALUES ('DTM','System Control ++ Downtime für Service _S_ auf dem Host _H_ wurde von _U_ definiert','&Uuml;bersicht zur Downtime:')");
+        st.execute("INSERT INTO class_mailtypes (MTYPD,MTYPH,MTYPT) VALUES ('ALT','++ Alarm ++ System Control ++ Der Status des Service _S_ auf dem Host _H_ ist _A_','&Uuml;bersicht zum Problem:')");
+        st.execute("INSERT INTO class_mailtypes (MTYPD,MTYPH,MTYPT) VALUES ('REK','System Control ++ Der Service _S_ auf dem Host _H_ ist wieder OK.','&Uuml;bersicht zum Problem:')");
+        st.execute("INSERT INTO class_mailtypes (MTYPD,MTYPH,MTYPT) VALUES ('REC','System Control ++ Der Service _S_ auf dem Host _H_ wurde manuell geprüft','Folgende Informationen:')");
+        st.execute("INSERT INTO class_mailtypes (MTYPD,MTYPH,MTYPT) VALUES ('DTB','System Control ++ Downtime beendet für Service _S_ auf dem Host _H_','&Uuml;bersicht zur Downtime:')");
+        
         /*
          * Close Connection
          */
@@ -644,6 +657,9 @@ public class Functions {
         st.execute("DROP TABLE monitoring_state_change CASCADE");
         st.execute("DROP TABLE monitoring_downtime CASCADE");
         st.execute("DROP TABLE monitoring_acknowledge CASCADE");
+        st.execute("DROP TABLE monitoring_host_role_mapping CASCADE");
+        st.execute("DROP TABLE class_mailtypes CASCADE");
+        st.execute("DROP TABLE monitoring_mailing CASCADE");
         
         /*
          * Close Connection
