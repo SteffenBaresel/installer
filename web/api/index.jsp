@@ -52,6 +52,9 @@
             <li><b>PrepareRepository</b> - Prepare Database Backend for Profiles usage URL: <a href="/admin/exec/PrepareRepository">/admin/exec/PrepareRepository</a></li>
             <li><b>UnprepareRepository</b> - Unprepare Database Backend for Profiles usage URL: <a href="/admin/exec/UnprepareRepository">/admin/exec/UnprepareRepository</a></li>
             <li><b>FillDefault</b> - Fill Default Values for Profiles usage URL: <a href="/admin/exec/FillDefault">/admin/exec/FillDefault</a></li>
+            <li><b>PrepareMonitoring</b> - Prepare Database Backend for Monitoring usage URL: <a href="/admin/exec/PrepareMonitoring">/admin/exec/PrepareMonitoring</a></li>
+            <li><b>UnprepareMonitoring</b> - Unprepare Database Backend for Monitoring usage URL: <a href="/admin/exec/UnprepareMonitoring">/admin/exec/UnprepareMonitoring</a></li>
+            <li><b>FillMonitoringDefault</b> - Fill Default Values for Monitoring usage URL: <a href="/admin/exec/FillMonitoringDefault">/admin/exec/FillMonitoringDefault</a></li>
         </ul>
         </font>
         <br></br>

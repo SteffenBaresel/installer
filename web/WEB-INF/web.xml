@@ -128,4 +128,29 @@
         <servlet-name>SysInfoIsAlreadyConfigured</servlet-name>
         <url-pattern>/exec/SysInfoIsAlreadyConfigured</url-pattern>
     </servlet-mapping>
+    <servlet>
+        <servlet-name>PrepareMonitoring</servlet-name>
+        <servlet-class>de.siv.webinstaller.PrepareMonitoring</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>PrepareMonitoring</servlet-name>
+        <url-pattern>/exec/PrepareMonitoring</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>UnprepareMonitoring</servlet-name>
+        <servlet-class>de.siv.webinstaller.UnprepareMonitoring</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>UnprepareMonitoring</servlet-name>
+        <url-pattern>/exec/UnprepareMonitoring</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>FillMonitoringDefault</servlet-name>
+        <servlet-class>de.siv.webinstaller.FillMonitoringDefault</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>FillMonitoringDefault</servlet-name>
+        <url-pattern>/exec/FillMonitoringDefault</url-pattern>
+    </servlet-mapping>
+    
 </web-app>
