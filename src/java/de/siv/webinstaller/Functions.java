@@ -5,6 +5,7 @@
 package de.siv.webinstaller;
 
 import de.siv.modules.Basics;
+import de.siv.web.Base64Coder;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.sql.Connection;
@@ -12,6 +13,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.Properties;
 import javax.naming.Context;
 import javax.naming.InitialContext;
@@ -87,6 +89,10 @@ public class Functions {
         st.execute("CREATE TABLE monitoring_host_contract_mapping ( HSTID BIGSERIAL, CCID BIGSERIAL )");
         st.execute("CREATE TABLE monitoring_host_role_mapping ( HSTID BIGSERIAL, RLID BIGSERIAL )");
         st.execute("CREATE TABLE monitoring_host_customer_mapping ( HSTID BIGSERIAL, CUID BIGSERIAL )");
+        /*
+         * Mailing
+         */
+        st.execute("CREATE TABLE profiles_mailing ( MAILID BIGSERIAL UNIQUE, MSID BIGSERIAL, DONE BOOLEAN, UUID BIGSERIAL, CUID BIGSERIAL, CCID BIGSERIAL, MTO VARCHAR(10000), MCC VARCHAR(10000), MSUBJECT VARCHAR(10000), MBODY VARCHAR(100000), MESC DECIMAL, CREATED BIGSERIAL )");
         /*
          * Close Connection
          */
@@ -240,6 +246,7 @@ public class Functions {
         st.execute("INSERT INTO class_contracttypes (COTRSN,COTRLN,MACTIONS) VALUES (encode('BSP','base64'),encode('Business Service Provider','base64'),'')");
         st.execute("INSERT INTO class_contracttypes (COTRSN,COTRLN,MACTIONS) VALUES (encode('HTG','base64'),encode('Hosting Rechenzentrum Stralsund','base64'),'')");
         st.execute("INSERT INTO class_contracttypes (COTRSN,COTRLN,MACTIONS) VALUES (encode('KPM','base64'),encode('Kundenportal Monitoring','base64'),'')");
+        st.execute("INSERT INTO class_contracttypes (COTRSN,COTRLN,MACTIONS) VALUES (encode('BI','base64'),encode('Wartungsvertrag BI/DWH','base64'),'')");
         /*
          * Comment types
          */
@@ -558,11 +565,13 @@ public class Functions {
         st.execute("CREATE TABLE monitoring_status_history ( SHID BIGSERIAL UNIQUE, HSTID BIGSERIAL, SRVID BIGSERIAL, APPID BIGSERIAL, OUTPUT varchar(100000), LONG_OUTPUT varchar(100000), CURRENT_STATE smallint, LAST_STATE smallint, PERF_DATA varchar(10000), CREATED BIGSERIAL )");
         st.execute("CREATE TABLE monitoring_task ( TID BIGSERIAL UNIQUE, TYPE smallint, HSTID BIGSERIAL, SRVID BIGSERIAL, ERROR smallint, DONE BOOLEAN, USR VARCHAR(50), TSSTART BIGSERIAL, TSEND BIGSERIAL, COMMENT VARCHAR(10000), INSTID BIGSERIAL )");
         st.execute("CREATE TABLE monitoring_state_change ( SCID BIGSERIAL, HSTID BIGSERIAL, SRVID BIGSERIAL, STATE SERIAL, LAST_STATE SERIAL, OUTPUT varchar(100000), NEW_PROBLEM SERIAL, MAIL SERIAL, CREATED BIGSERIAL )");
-        st.execute("CREATE TABLE monitoring_acknowledge ( ACKID BIGSERIAL, TS BIGSERIAL, USR VARCHAR(50), COMMENT VARCHAR(10000), HSTID BIGSERIAL, SRVID BIGSERIAL, APPID BIGSERIAL, CREATED BIGSERIAL )");
+        st.execute("CREATE TABLE monitoring_acknowledge ( ACKID BIGSERIAL, TS BIGSERIAL, USR VARCHAR(50), COMMENT VARCHAR(10000), HSTID BIGSERIAL, SRVID BIGSERIAL, APPID BIGSERIAL, NEWE BOOLEAN, CREATED BIGSERIAL )");
         st.execute("CREATE TABLE monitoring_downtime ( DTMID BIGSERIAL, TSSTART BIGSERIAL, TSEND BIGSERIAL, USR VARCHAR(50), COMMENT VARCHAR(10000), HSTID BIGSERIAL, SRVID BIGSERIAL, APPID BIGSERIAL, CREATED BIGSERIAL )");
         st.execute("CREATE TABLE monitoring_host_role_mapping ( HSTID BIGSERIAL, RLID BIGSERIAL )");
         st.execute("CREATE TABLE class_mailtypes ( MTYPID SERIAL UNIQUE, MTYPD varchar(500), MTYPH varchar(500), MTYPT varchar(500) )");
         st.execute("CREATE TABLE monitoring_mailing ( MAILID BIGSERIAL UNIQUE, DONE BOOLEAN, HSTID BIGSERIAL, SRVID BIGSERIAL, MTYPID BIGSERIAL, USR VARCHAR(50), COMMENT VARCHAR(10000), APPID BIGSERIAL, T1 BIGSERIAL, T2 BIGSERIAL, CREATED BIGSERIAL)");
+        st.execute("CREATE TABLE monitoring_config ( MCFGID BIGSERIAL UNIQUE, NAME VARCHAR(250), INSTID BIGSERIAL, COMMENT VARCHAR(10000000), EDITED BOOLEAN, CREATED BIGSERIAL)");
+        st.execute("CREATE TABLE monitoring_task_out ( TOID BIGSERIAL UNIQUE, INSTID BIGSERIAL, TID BIGSERIAL, OUTPUT VARCHAR(100000), CREATED BIGSERIAL)");
         
         /*
          * Close Connection
@@ -612,13 +621,14 @@ public class Functions {
         st.execute("INSERT INTO class_hosttypes (HTYPSN,HTYPLN,HTYPICON) VALUES ('PRSE','Proxy Server','collapse')");
         st.execute("INSERT INTO class_hosttypes (HTYPSN,HTYPLN,HTYPICON) VALUES ('FIWA','Firewall','collapse')");
         
-        st.execute("INSERT INTO class_mailtypes (MTYPD,MTYPH,MTYPT) VALUES ('ACK','System Control ++ Der Service _S_ auf dem Host _H_ wurde von _U_ bearbeitet','&Uuml;bersicht zur Bearbeitung:')");
-        st.execute("INSERT INTO class_mailtypes (MTYPD,MTYPH,MTYPT) VALUES ('DTM','System Control ++ Downtime für Service _S_ auf dem Host _H_ wurde von _U_ definiert','&Uuml;bersicht zur Downtime:')");
-        st.execute("INSERT INTO class_mailtypes (MTYPD,MTYPH,MTYPT) VALUES ('ALT','++ Alarm ++ System Control ++ Der Status des Service _S_ auf dem Host _H_ ist _A_','&Uuml;bersicht zum Problem:')");
-        st.execute("INSERT INTO class_mailtypes (MTYPD,MTYPH,MTYPT) VALUES ('REK','System Control ++ Der Service _S_ auf dem Host _H_ ist wieder OK','&Uuml;bersicht zum Problem:')");
-        st.execute("INSERT INTO class_mailtypes (MTYPD,MTYPH,MTYPT) VALUES ('REC','System Control ++ Der Service _S_ auf dem Host _H_ wurde manuell geprüft','Folgende Informationen:')");
-        st.execute("INSERT INTO class_mailtypes (MTYPD,MTYPH,MTYPT) VALUES ('DTB','System Control ++ Downtime beendet für Service _S_ auf dem Host _H_','&Uuml;bersicht zur Downtime:')");
-        
+        st.execute("INSERT INTO class_mailtypes (MTYPD,MTYPH,MTYPT) VALUES ('ACK','Acknowledgement - _H_ [ _S_ ] wurde von _U_ bearbeitet','&Uuml;bersicht zur Bearbeitung:')");
+        st.execute("INSERT INTO class_mailtypes (MTYPD,MTYPH,MTYPT) VALUES ('DTM','Downtime - _H_ [ Service _S_ ] wurde von _U_ definiert','&Uuml;bersicht zur Downtime:')");
+        st.execute("INSERT INTO class_mailtypes (MTYPD,MTYPH,MTYPT) VALUES ('ALT','++ Alarm ++ _H_ [ _S_ ] ist _A_','&Uuml;bersicht zum Problem:')");
+        st.execute("INSERT INTO class_mailtypes (MTYPD,MTYPH,MTYPT) VALUES ('REK','Recovery - _H_ [ _S_ ] ist wieder OK.','&Uuml;bersicht zum Problem:')");
+        st.execute("INSERT INTO class_mailtypes (MTYPD,MTYPH,MTYPT) VALUES ('REC','ReCheck - _H_ [ _S_ ] wurde manuell gepr&uuml;ft','Folgende Informationen:')");
+        st.execute("INSERT INTO class_mailtypes (MTYPD,MTYPH,MTYPT) VALUES ('DTB','Downtime beendet - _G_ [ _S_ ]','&Uuml;bersicht zur Downtime:')");
+        st.execute("INSERT INTO class_mailtypes (MTYPD,MTYPH,MTYPT) VALUES ('SYS','Information vom Broker Modul','Meldung:')");
+
         /*
          * Close Connection
          */
@@ -660,10 +670,214 @@ public class Functions {
         st.execute("DROP TABLE monitoring_host_role_mapping CASCADE");
         st.execute("DROP TABLE class_mailtypes CASCADE");
         st.execute("DROP TABLE monitoring_mailing CASCADE");
+        st.execute("DROP TABLE monitoring_config CASCADE");
+        st.execute("DROP TABLE monitoring_task_out CASCADE");
         
         /*
          * Close Connection
          */
         cn.close();
+    }
+    
+    /*
+     * Monitoring
+     */
+    
+    static public String GetMonitoringInstances() throws FileNotFoundException, IOException, NamingException, SQLException {
+        if (props == null) {
+            props = Basics.getConfiguration();
+        }
+        String out = "[";
+        Context ctx = new InitialContext(); 
+        DataSource ds  = (DataSource) ctx.lookup("jdbc/monitoring"); 
+        Connection cn = ds.getConnection(); 
+        Statement st = cn.createStatement(); 
+        ResultSet rs  = st.executeQuery("SELECT instid,instna,identifier FROM monitoring_info_instance");
+        while ( rs.next() ) {
+           out += "{\"ID\":\"" + rs.getString( 1 ) + "\",\"NAME\":\"" + Base64Coder.encodeString( rs.getString( 2 ) ) + "\",\"IDTF\":\"" + Base64Coder.encodeString( rs.getString( 3 ) ) + "\"},";
+        }
+        out = out.substring(0, out.length()-1); out+= "]";
+        
+        /*
+         * Close Connection
+         */
+        cn.close();
+        return out;
+    }
+    
+    static public String GetConfigFiles(String instid) throws FileNotFoundException, IOException, NamingException, SQLException {
+        if (props == null) {
+            props = Basics.getConfiguration();
+        }
+        String out = "[";
+        Integer i = 0;
+        Context ctx = new InitialContext(); 
+        DataSource ds  = (DataSource) ctx.lookup("jdbc/monitoring"); 
+        Connection cn = ds.getConnection(); 
+        PreparedStatement ps = cn.prepareStatement("SELECT mcfgid,name,comment,created FROM monitoring_config WHERE instid=?");
+        ps.setInt(1, Integer.parseInt( instid ));
+        ResultSet rs = ps.executeQuery();
+        
+        while ( rs.next() ) {
+           out+= "{\"MCFGID\":\"" + rs.getString( 1 ) + "\",\"NAME\":\"" + rs.getString( 2 ) + "\",\"TS\":\"" + Basics.ConvertUtime( rs.getLong( 4 ) ) + "\"},";
+           i++;
+        }
+        if ( i>0 ) { out = out.substring(0, out.length()-1); }
+        out+= "]";
+        
+        /*
+         * Close Connection
+         */
+        cn.close();
+        return out;
+    }
+    
+    static public String GetContent(String mcfgid) throws FileNotFoundException, IOException, NamingException, SQLException {
+        if (props == null) {
+            props = Basics.getConfiguration();
+        }
+        String out = "";
+        Context ctx = new InitialContext(); 
+        DataSource ds  = (DataSource) ctx.lookup("jdbc/monitoring"); 
+        Connection cn = ds.getConnection(); 
+        PreparedStatement ps = cn.prepareStatement("SELECT name,comment FROM monitoring_config WHERE mcfgid=?");
+        ps.setInt(1, Integer.parseInt( mcfgid ));
+        ResultSet rs = ps.executeQuery();
+        
+        if ( rs.next() ) {
+           out= "{\"NAME\":\"" + rs.getString( 1 ) + "\",\"CONTENT\":\"" + Basics.encodeHtml( rs.getString( 2 ) ) + "\"}";
+        }
+        
+        /*
+         * Close Connection
+         */
+        cn.close();
+        return out;
+    }
+    
+    static public void UpdateConfig(String text, String mcfgid) throws FileNotFoundException, IOException, NamingException, SQLException {
+        if (props == null) {
+            props = Basics.getConfiguration();
+        }
+        Context ctx = new InitialContext(); 
+        DataSource ds  = (DataSource) ctx.lookup("jdbc/monitoring"); 
+        Connection cn = ds.getConnection(); 
+        /*
+         * Update Config
+         */
+        PreparedStatement ps = cn.prepareStatement("UPDATE monitoring_config SET comment=?, edited=true, created=? WHERE mcfgid=?");
+        ps.setString(1, text.replace("78", "+"));
+        ps.setLong(2, System.currentTimeMillis()/1000);
+        ps.setInt(3, Integer.parseInt( mcfgid ));
+        ps.executeUpdate();
+        /*
+         * Close Connection
+         */
+        cn.close();
+    }
+    
+    static public String InsertTask(String type, String comment, String instid) throws FileNotFoundException, IOException, NamingException, SQLException {
+        Context ctxM = new InitialContext(); 
+        DataSource dsM  = (DataSource) ctxM.lookup("jdbc/monitoring"); 
+        Connection cnM = dsM.getConnection(); 
+        Long timestamp = System.currentTimeMillis()/1000;
+        String tid="";
+        
+        /* Insert Acknowledge Command to task Table */
+        
+        PreparedStatement psD = cnM.prepareStatement("insert into monitoring_task(type,hstid,srvid,done,usr,tsstart,tsend,comment,instid) values (?,'0','0',false,?,?,'0',?,?)");
+        psD.setInt(1,Integer.parseInt( type ));
+        psD.setString(2, Base64Coder.encodeString("System") );
+        psD.setLong(3, timestamp );
+        psD.setString(4, comment);
+        psD.setInt(5,Integer.parseInt( instid ));
+        psD.executeUpdate();
+        
+        PreparedStatement ps = cnM.prepareStatement("SELECT tid FROM monitoring_task WHERE type=? AND hstid=0 AND srvid=0 AND done=false AND usr=? AND tsstart=? AND tsend=0 AND comment=? AND instid=?");
+        ps.setInt(1,Integer.parseInt( type ));
+        ps.setString(2, Base64Coder.encodeString("System") );
+        ps.setLong(3, timestamp );
+        ps.setString(4, comment);
+        ps.setInt(5,Integer.parseInt( instid ));
+        ResultSet rs = ps.executeQuery();
+        
+        if ( rs.next() ) {
+            tid = rs.getString( 1 );
+        }
+        
+        /*
+         * Close Repository Connection
+         */
+        cnM.close();
+        
+        return tid;
+    }
+    
+    static public String GetConfigHosts(String mcfgid) throws FileNotFoundException, IOException, NamingException, SQLException {
+        if (props == null) {
+            props = Basics.getConfiguration();
+        }
+        String out = ""; String comment = "";
+        Context ctx = new InitialContext(); 
+        DataSource ds  = (DataSource) ctx.lookup("jdbc/monitoring"); 
+        Connection cn = ds.getConnection(); 
+        PreparedStatement ps = cn.prepareStatement("SELECT decode(comment,'base64') FROM monitoring_config WHERE mcfgid=?");
+        ps.setInt(1, Integer.parseInt( mcfgid ));
+        ResultSet rs = ps.executeQuery();
+        
+        if ( rs.next() ) {
+            comment = Basics.encodeConfig( rs.getString( 1 ) );
+        }
+        
+        ArrayList list = Basics.SplitConfig(comment, "<br>");
+        
+        for (int j = 0; j < list.size(); j++) {
+            String[] array = list.get(j).toString().split("=");
+            if("all_hosts".equals(array[0])) {
+                String[] host = array[1].substring(array[1].indexOf("[")+1,array[1].lastIndexOf("]")).replace("'","").split(",");
+                for (int k = 0; k < host.length; k++) {
+                    if (host[k].contains("|")) {
+                        out+= "\"" + host[k].substring(0,host[k].indexOf("|")) + "\",";
+                    } else {
+                        out+= "\"" + host[k] + "\",";
+                    }
+                }
+            }
+        }
+        
+        out = out.substring(0, out.length()-1);
+        
+        /*
+         * Close Connection
+         */
+        cn.close();
+        return "[" + out + "]";
+    }
+    
+    static public String GetTaskOutput(String tid) throws FileNotFoundException, IOException, NamingException, SQLException {
+        if (props == null) {
+            props = Basics.getConfiguration();
+        }
+        String out = "";
+        Context ctx = new InitialContext(); 
+        DataSource ds  = (DataSource) ctx.lookup("jdbc/monitoring"); 
+        Connection cn = ds.getConnection(); 
+        PreparedStatement ps = cn.prepareStatement("SELECT decode(output,'base64'),created FROM monitoring_task_out WHERE tid=?");
+        ps.setInt(1, Integer.parseInt( tid ));
+        ResultSet rs = ps.executeQuery();
+        
+        while ( rs.next() ) {
+            out+= "{\"LINE\":\"" + Base64Coder.encodeString( Basics.encodeHtml( rs.getString( 1 ) ) ) + "\",\"CREATED\":\"" + Basics.ConvertUtime( rs.getLong( 2 ) ) + "\"},";
+        }
+        
+        if (out.length() > 0) {
+            out = out.substring(0, out.length()-1);
+        }
+        
+        /*
+         * Close Connection
+         */
+        cn.close();
+        return "[" + out + "]";
     }
 }

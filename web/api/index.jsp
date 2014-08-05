@@ -14,9 +14,9 @@
     <body>
         <!--GATEWAY_ENGINE:2.3.131127-->
         <center>
-            <h2>kVASy&reg; System Control - Installer Engine 2.3.131127</h2>
+            <h2>kVASy&reg; System Control - Installer Engine 2.3.140308</h2>
             <p>
-                <font size=2>Entwicklungslinie 2 Update 3 - Steffen Baresel</font>
+                <font size=2>Entwicklungslinie 3 Build 2014.02</font>
             </p>
         </center>
         <div>
@@ -41,9 +41,9 @@
         </div>
         <hr>
         <br></br>
-        <!--INSTALLATION_REPOSITORY_VERSION:2.3.131127-->
+        <!--INSTALLATION_REPOSITORY_VERSION:2.3.140308-->
         Modul: <i><b>Installation Repository</b></i><br>
-        Version: <i><b>2.3.131127</b></i><br>
+        Version: <i><b>2.3.140308</b></i><br>
         Comments: -
         <br></br>
         Format: <i><b>JSON</b></i><br>
@@ -63,9 +63,9 @@
         -->
         <hr>
         <br></br>
-        <!--CONFIGURE_REPOSITORY_VERSION:2.3.131127-->
+        <!--CONFIGURE_REPOSITORY_VERSION:2.3.140308-->
         Modul: <i><b>Konfiguration Repository</b></i><br>
-        Version: <i><b>2.3.131127</b></i><br>
+        Version: <i><b>2.3.140308</b></i><br>
         Comments: -
         <br></br>
         Format: <i><b>JSON</b></i><br>
@@ -77,6 +77,26 @@
             <li><b>CreateAdminUser</b> - Set Admin User URL: <a href="/admin/exec/CreateAdminUser?sn=&ln=">/admin/exec/CreateAdminUser?sn=&ln=</a></li>
             <li><b>SysInfoIsAlreadyConfigured</b> - Get system information URL: <a href="/admin/exec/SysInfoIsAlreadyConfigured">/admin/exec/SysInfoIsAlreadyConfigured</a></li>
             <li><b>ConfigureSysInfo</b> - Set set system information URL: <a href="/admin/exec/ConfigureSysInfo?mainv=&updatev=&buildv=&portalp=">/admin/exec/ConfigureSysInfo?mainv=&updatev=&buildv=&portalp=</a></li>
+        </ul>
+        </font>
+        <br></br>
+        <hr>
+        <br></br>
+        <!--:3.0.140308-->
+        Modul: <i><b>Monitoring</b></i><br>
+        Version: <i><b>3.0.140308</b></i><br>
+        Comments: -
+        <br></br>
+        Format: <i><b>JSON</b></i><br>
+        <font size=2>Query:<br>
+        <ul>
+            <li><b>GetMonitoringInstances</b> - Get configured Monitoring Instances URL: <a href="/admin/exec/GetMonitoringInstances">/admin/exec/GetMonitoringInstances</a></li>
+            <li><b>GetConfigFiles</b> - Get Monitoring Config Files for one Instances URL: <a href="/admin/exec/GetConfigFiles?instid=">/admin/exec/GetConfigFiles?instid=</a></li>
+            <li><b>GetContent</b> - Get Monitoring Config File for one Instance URL: <a href="/admin/exec/GetContent?mcfgid=">/admin/exec/GetContent?mcfgid=</a></li>
+            <li><b>UpdateConfig</b> - Update Monitoring Config File for one Instance URL: <a href="/admin/exec/UpdateConfig?text=&mcfgid=">/admin/exec/UpdateConfig?text=&mcfgid=</a></li>
+            <li><b>InsertTask</b> - Insert Monitoring task for one Instance URL: <a href="/admin/exec/InsertTask?comment=&instid=">/admin/exec/InsertTask?comment=&instid=</a></li>
+            <li><b>GetConfigHosts</b> - Get Host from Config File for one Instance URL: <a href="/admin/exec/GetConfigHosts?mcfgid=">/admin/exec/GetConfigHosts?mcfgid=</a></li>
+            <li><b>GetTaskOutput</b> - Get Output from Inserted Task for one Instance URL: <a href="/admin/exec/GetTaskOutput?tid=">/admin/exec/GetTaskOutput?tid=</a></li>
         </ul>
         </font>
         <br></br>

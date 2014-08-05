@@ -152,5 +152,61 @@
         <servlet-name>FillMonitoringDefault</servlet-name>
         <url-pattern>/exec/FillMonitoringDefault</url-pattern>
     </servlet-mapping>
+    <servlet>
+        <servlet-name>GetMonitoringInstances</servlet-name>
+        <servlet-class>de.siv.webinstaller.GetMonitoringInstances</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>GetMonitoringInstances</servlet-name>
+        <url-pattern>/exec/GetMonitoringInstances</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>GetConfigFiles</servlet-name>
+        <servlet-class>de.siv.webinstaller.GetConfigFiles</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>GetConfigFiles</servlet-name>
+        <url-pattern>/exec/GetConfigFiles</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>GetContent</servlet-name>
+        <servlet-class>de.siv.webinstaller.GetContent</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>GetContent</servlet-name>
+        <url-pattern>/exec/GetContent</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>UpdateConfig</servlet-name>
+        <servlet-class>de.siv.webinstaller.UpdateConfig</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>UpdateConfig</servlet-name>
+        <url-pattern>/exec/UpdateConfig</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>InsertTask</servlet-name>
+        <servlet-class>de.siv.webinstaller.InsertTask</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>InsertTask</servlet-name>
+        <url-pattern>/exec/InsertTask</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>GetConfigHosts</servlet-name>
+        <servlet-class>de.siv.webinstaller.GetConfigHosts</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>GetConfigHosts</servlet-name>
+        <url-pattern>/exec/GetConfigHosts</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>GetTaskOutput</servlet-name>
+        <servlet-class>de.siv.webinstaller.GetTaskOutput</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>GetTaskOutput</servlet-name>
+        <url-pattern>/exec/GetTaskOutput</url-pattern>
+    </servlet-mapping>
     
 </web-app>

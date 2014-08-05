@@ -18,10 +18,10 @@ function MailConfig(id) {
                 $('#body').css('height', '524px');
                 $('#Footer').css('top', '475px');
                 $('#MailEdit').show();
-                $('#hostE').val($.base64.decode( json.HOST ));
-                $('#portE').val($.base64.decode( json.PORT ));
-                $('#userE').val($.base64.decode( json.USER ));
-                $('#passE').val($.base64.decode( json.PASS ));
+                $('#hostE').val(base64_decode( json.HOST ));
+                $('#portE').val(base64_decode( json.PORT ));
+                $('#userE').val(base64_decode( json.USER ));
+                $('#passE').val(base64_decode( json.PASS ));
             } else {
                 $("#" + id).hide();
                 $('#body').css('height', '524px');
@@ -51,8 +51,8 @@ function AdminUser(id) {
                 $('#body').css('height', '474px');
                 $('#Footer').css('top', '425px');
                 $('#EdtAdminUser').show();
-                $('#unE').val($.base64.decode( json.SN ));
-                $('#nmE').val($.base64.decode( json.LN ));
+                $('#unE').val(base64_decode( json.SN ));
+                $('#nmE').val(base64_decode( json.LN ));
             } else {
                 $("#" + id).hide();
                 $("#MailConfig").hide();
@@ -179,7 +179,7 @@ function sleep(milliseconds) {
 function ConfigureMailApi(pv,host,port,user,pass) {
     $('#ProgressBar').progressbar( "option", { value: parseInt(pv) });
     $.ajax({
-        url: '/admin/exec/ConfigureMailApi?host=' + $.base64.encode( host ) + '&port=' + $.base64.encode( port ) + '&user=' + $.base64.encode( user ) + '&pass=' + $.base64.encode( pass ),
+        url: '/admin/exec/ConfigureMailApi?host=' + base64_encode( host ) + '&port=' + base64_encode( port ) + '&user=' + base64_encode( user ) + '&pass=' + base64_encode( pass ),
         dataType: 'json',
         cache: false,
         async: false,
@@ -195,7 +195,7 @@ function ConfigureMailApi(pv,host,port,user,pass) {
 function CreateAdmin(pv,sn,ln) {
     $('#ProgressBar').progressbar( "option", { value: parseInt(pv) });
     $.ajax({
-        url: '/admin/exec/AdminUser?sn=' + $.base64.encode( sn ) + '&ln=' + $.base64.encode( ln ),
+        url: '/admin/exec/AdminUser?sn=' + base64_encode( sn ) + '&ln=' + base64_encode( ln ),
         dataType: 'json',
         cache: false,
         async: false,
@@ -225,13 +225,13 @@ function SysInfo(id) {
                 $('#body').css('height', '524px');
                 $('#Footer').css('top', '475px');
                 $('#SysInfoEdit').show();
-                $('#mainvE').val($.base64.decode( json.MAINV ));
+                $('#mainvE').val(base64_decode( json.MAINV ));
                 inputAct('mainvE');
-                $('#updatevE').val($.base64.decode( json.UPDATEV ));
+                $('#updatevE').val(base64_decode( json.UPDATEV ));
                 inputAct('updatevE');
-                $('#buildvE').val($.base64.decode( json.BUILDV ));
+                $('#buildvE').val(base64_decode( json.BUILDV ));
                 inputAct('buildvE');
-                $('#portalpE').val($.base64.decode( json.PORTALP ));
+                $('#portalpE').val(base64_decode( json.PORTALP ));
                 inputAct('portalpE');
             } else {
                 $("#" + id).hide();
@@ -297,7 +297,7 @@ function execSysInfoConfigure(id1,id2,id3,id4) {
 function ConfigureSysInfo(pv,mainv,updatev,buildv,portalp) {
     $('#ProgressBar').progressbar( "option", { value: parseInt(pv) });
     $.ajax({
-        url: '/admin/exec/ConfigureSysInfo?mainv=' + $.base64.encode( mainv ) + '&updatev=' + $.base64.encode( updatev ) + '&buildv=' + $.base64.encode( buildv ) + '&portalp=' + $.base64.encode( portalp ),
+        url: '/admin/exec/ConfigureSysInfo?mainv=' + base64_encode( mainv ) + '&updatev=' + base64_encode( updatev ) + '&buildv=' + base64_encode( buildv ) + '&portalp=' + base64_encode( portalp ),
         dataType: 'json',
         cache: false,
         async: false,

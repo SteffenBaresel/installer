@@ -15,6 +15,7 @@
 	<title>WebAdmin - DeInstaller</title>
         <script type="text/javascript" src="public/script/jquery-1.8.2.min.js"></script>
         <script type="text/javascript" src="public/script/jquery-ui-1.10.4.custom.min.js"></script>
+        <script type="text/javascript" src="public/script/basics.js"></script>
         <script type="text/javascript" src="script/WebUninstaller.js"></script>
         <link rel='stylesheet' href='public/style/jquery-ui-1.10.4.custom.css' />
         <!--

@@ -1,5 +1,5 @@
 <%-- 
-    Document   : index.jsp
+    Document   : configure.jsp
     Created on : 30.10.2013, 15:03:02
     Author     : sbaresel
 --%>
@@ -15,7 +15,7 @@
 	<title>WebAdmin - Konfigurator</title>
         <script type="text/javascript" src="public/script/jquery-1.8.2.min.js"></script>
         <script type="text/javascript" src="public/script/jquery-ui-1.10.4.custom.min.js"></script>
-        <script type="text/javascript" src="script/kSCbase64.js"></script>
+        <script type="text/javascript" src="public/script/basics.js"></script>
         <script type="text/javascript" src="script/WebKonfigurator.js"></script>
         <link rel='stylesheet' href='public/style/jquery-ui-1.10.4.custom.css' />
         <!--
