@@ -93,6 +93,11 @@ public class Functions {
          * Mailing
          */
         st.execute("CREATE TABLE profiles_mailing ( MAILID BIGSERIAL UNIQUE, MSID BIGSERIAL, DONE BOOLEAN, UUID BIGSERIAL, CUID BIGSERIAL, CCID BIGSERIAL, MTO VARCHAR(10000), MCC VARCHAR(10000), MSUBJECT VARCHAR(10000), MBODY VARCHAR(100000), MESC DECIMAL, CREATED BIGSERIAL )");
+        st.execute("CREATE TABLE mail_group ( MGID SERIAL UNIQUE, NME VARCHAR(50), DSC VARCHAR(10000), ACK BOOLEAN, DTM BOOLEAN, ALT BOOLEAN, REK BOOLEAN, REC BOOLEAN, DTB BOOLEAN, OK BOOLEAN, WARN BOOLEAN, CRIT BOOLEAN, UN BOOLEAN, COUNT SERIAL, TIMEZONE SERIAL )");
+        st.execute("CREATE TABLE mail_group_user_mapping ( MGUID BIGSERIAL UNIQUE, UUID BIGSERIAL, MGID SERIAL)");
+        st.execute("CREATE TABLE mail_group_service_mapping ( MGSID BIGSERIAL UNIQUE, MGID SERIAL, SRVID BIGSERIAL)");
+        st.execute("CREATE TABLE timezone ( TZID BIGSERIAL UNIQUE, TZNA VARCHAR(10), TZDSC VARCHAR(500), DAYS SERIAL, HSTART SERIAL, MSTART SERIAL, HEND SERIAL, MEND SERIAL)");
+        st.execute("CREATE TABLE timezone_mailgroup_mapping ( TMGMID BIGSERIAL UNIQUE, TZID BIGSERIAL, MGID BIGSERIAL )");
         /*
          * Close Connection
          */
@@ -261,6 +266,17 @@ public class Functions {
         st.execute("INSERT INTO class_entrytypes (ENSN,ENLN) VALUES (encode('WApplStatMail','base64'),encode('Wartungsapplikation','base64'))");
         st.execute("INSERT INTO class_entrytypes (ENSN,ENLN) VALUES (encode('ProfilesTask','base64'),encode('Aufgabenkorb','base64'))");
         /*
+         * Create Views
+         */
+        //st.execute("CREATE VIEW searchcustomer AS SELECT cuid,cunr,decode(cunm,'base64') as cunm,decode(cuaddr,'base64') as cuaddr,decode(cumail,'base64') as cumail,decode(cueskmail,'base64') as cueskmail,decode(cucomm,'base64') as cucomm FROM managed_service_cinfo");
+        /*
+         * Mailing
+         */
+        st.execute("INSERT INTO mail_group (MGID,NME,DSC,ACK,DTM,ALT,REK,REC,DTB,OK,WARN,CRIT,UN,COUNT,TIMEZONE) VALUES (0,encode('Default','base64'),encode('In dieser Mailgruppe sind alle Services automatisch. Es wird in dieser Gruppe jede Benachrichtigung versandt.','base64'),TRUE,TRUE,TRUE,TRUE,TRUE,TRUE,TRUE,TRUE,TRUE,TRUE,1,0)");
+        st.execute("INSERT INTO mail_group_user_mapping (MGUID,UUID,MGID) VALUES (0,0,0)");
+        st.execute("INSERT INTO timezone_mailgroup_mapping(TMGMID,TZID,MGID) VALUES (0,0,0)");
+        st.execute("INSERT INTO timezone (TZID,TZNA,TZDSC,DAYS,HSTART,MSTART,HEND,MEND) VALUES (0,encode('24x7','base64'),encode('Mailing 24x7','base64'),1234567,00,00,24,60)");
+        /*
          * Close Connection
          */
         cn.close();
@@ -371,6 +387,15 @@ public class Functions {
         st.execute("DROP TABLE monitoring_host_contract_mapping CASCADE");
         st.execute("DROP TABLE monitoring_host_role_mapping CASCADE");
         st.execute("DROP TABLE monitoring_host_customer_mapping CASCADE");
+        /*
+         * Mailing
+         */
+        st.execute("DROP TABLE profiles_mailing CASCADE");
+        st.execute("DROP TABLE mail_group CASCADE");
+        st.execute("DROP TABLE mail_group_user_mapping CASCADE");
+        st.execute("DROP TABLE mail_group_service_mapping CASCADE");
+        st.execute("DROP TABLE timezone CASCADE");
+        st.execute("DROP TABLE timezone_mailgroup_mapping CASCADE");
         /*
          * Close Connection
          */
