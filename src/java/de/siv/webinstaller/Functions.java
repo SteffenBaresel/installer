@@ -93,7 +93,7 @@ public class Functions {
          * Mailing
          */
         st.execute("CREATE TABLE profiles_mailing ( MAILID BIGSERIAL UNIQUE, MSID BIGSERIAL, DONE BOOLEAN, UUID BIGSERIAL, CUID BIGSERIAL, CCID BIGSERIAL, MTO VARCHAR(10000), MCC VARCHAR(10000), MSUBJECT VARCHAR(10000), MBODY VARCHAR(100000), MESC DECIMAL, CREATED BIGSERIAL )");
-        st.execute("CREATE TABLE mail_group ( MGID SERIAL UNIQUE, NME VARCHAR(50), DSC VARCHAR(10000), ACK BOOLEAN, DTM BOOLEAN, ALT BOOLEAN, REK BOOLEAN, REC BOOLEAN, DTB BOOLEAN, OK BOOLEAN, WARN BOOLEAN, CRIT BOOLEAN, UN BOOLEAN, COUNT SERIAL, TIMEZONE SERIAL )");
+        st.execute("CREATE TABLE mail_group ( MGID SERIAL UNIQUE, NME VARCHAR(50), DSC VARCHAR(10000), ACK BOOLEAN, DTM BOOLEAN, ALT BOOLEAN, REK BOOLEAN, REC BOOLEAN, DTB BOOLEAN, OK BOOLEAN, WARN BOOLEAN, CRIT BOOLEAN, UN BOOLEAN, COUNT SERIAL )");
         st.execute("CREATE TABLE mail_group_user_mapping ( MGUID BIGSERIAL UNIQUE, UUID BIGSERIAL, MGID SERIAL)");
         st.execute("CREATE TABLE mail_group_service_mapping ( MGSID BIGSERIAL UNIQUE, MGID SERIAL, SRVID BIGSERIAL)");
         st.execute("CREATE TABLE timezone ( TZID BIGSERIAL UNIQUE, TZNA VARCHAR(10), TZDSC VARCHAR(500), DAYS SERIAL, HSTART SERIAL, MSTART SERIAL, HEND SERIAL, MEND SERIAL)");
@@ -275,10 +275,10 @@ public class Functions {
         /*
          * Mailing
          */
-        st.execute("INSERT INTO mail_group (MGID,NME,DSC,ACK,DTM,ALT,REK,REC,DTB,OK,WARN,CRIT,UN,COUNT,TIMEZONE) VALUES (0,encode('Default','base64'),encode('In dieser Mailgruppe sind alle Services automatisch. Es wird in dieser Gruppe jede Benachrichtigung versandt.','base64'),TRUE,TRUE,TRUE,TRUE,TRUE,TRUE,TRUE,TRUE,TRUE,TRUE,1,0)");
+        st.execute("INSERT INTO mail_group (MGID,NME,DSC,ACK,DTM,ALT,REK,REC,DTB,OK,WARN,CRIT,UN,COUNT) VALUES (0,encode('Default','base64'),encode('In dieser Mailgruppe sind alle Services automatisch. Es wird in dieser Gruppe jede Benachrichtigung versandt.','base64'),TRUE,TRUE,TRUE,TRUE,TRUE,TRUE,TRUE,TRUE,TRUE,TRUE,1)");
         st.execute("INSERT INTO mail_group_user_mapping (MGUID,UUID,MGID) VALUES (0,0,0)");
-        st.execute("INSERT INTO timezone_mailgroup_mapping(TMGMID,TZID,MGID) VALUES (0,0,0)");
         st.execute("INSERT INTO timezone (TZID,TZNA,TZDSC,DAYS,HSTART,MSTART,HEND,MEND) VALUES (0,encode('24x7','base64'),encode('Mailing 24x7','base64'),1234567,00,00,24,60)");
+        st.execute("INSERT INTO timezone_mailgroup_mapping(TMGMID,TZID,MGID) VALUES (0,0,0)");
         /*
          * Close Connection
          */
