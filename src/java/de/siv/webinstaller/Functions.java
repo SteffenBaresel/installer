@@ -164,6 +164,7 @@ public class Functions {
         st.execute("INSERT INTO profiles_privilege (PRNM,PRDC) values (encode('config_mail','base64'),encode('Mail Format Einstellungen','base64'))");
         st.execute("INSERT INTO profiles_privilege (PRNM,PRDC) values (encode('service_menu','base64'),encode('Anischt des Service Menu','base64'))");
         st.execute("INSERT INTO profiles_privilege (PRNM,PRDC) values (encode('config_mailing','base64'),encode('Konfigurieren des Monitoring Mailing','base64'))");
+        st.execute("INSERT INTO profiles_privilege (PRNM,PRDC) values (encode('reporting','base64'),encode('Zugriff auf die Reporting Funktion','base64'))");
         
         /*
          * Group Role Mapping
@@ -208,6 +209,7 @@ public class Functions {
         st.execute("INSERT INTO profiles_role_priv_mapping (RLID,PRID) values ('1','33')");
         st.execute("INSERT INTO profiles_role_priv_mapping (RLID,PRID) values ('1','34')");
         st.execute("INSERT INTO profiles_role_priv_mapping (RLID,PRID) values ('1','35')");
+        st.execute("INSERT INTO profiles_role_priv_mapping (RLID,PRID) values ('1','36')");
         
         st.execute("INSERT INTO profiles_role_priv_mapping (RLID,PRID) values ('2','1')");
         st.execute("INSERT INTO profiles_role_priv_mapping (RLID,PRID) values ('2','2')");
