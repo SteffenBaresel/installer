@@ -55,18 +55,18 @@
             <div id="Header">
                 <img src="public/images/SIV_AG_Logo_RGB_Web.png" />
                 <h2>WebAdmin</h2>
-                <h4>f&uuml;r kVASy&reg; System Control<font color="#666"> - Version 3 Build 2014.02</font></h4>
+                <h4>f&uuml;r C&C - Reports<font color="#666"> - Version 1 Build 2015.03</font></h4>
                 <p>Dieser WebManager installiert und konfiguriert, deinstalliert und updated Basis Einstellungen f&uuml;r das<br>
-                kVASy&reg; System Control in der Version 3 Build 2014.02. Der Admin Bereich re-deployed keine Anwednungen,<br>
+                C&C - Reports in der Version 1 Build 2015.03. Der Admin Bereich re-deployed keine Anwendungen,<br>
                 es werden nur Einstellungen im Datenmodell vorgenommen.<br><br><br><br><br>
                 Durch dr&uuml;cken auf den entsprechenden Link gelangen Sie auf die entsprechende Oberfl&auml;che um die<br>Aufgabe zu erledigen.</p>
             </div>
                 <a id="Installer" href="installer.jsp">Installer</a>
                 <a id="Uninstaller" href="uninstaller.jsp">Deinstaller</a>
                 <a id="Konfigurator" href="configure.jsp">Konfigurator</a>
-                <a id="Monitoring" href="monitoring.jsp">Monitoring</a>
+                <!--a id="Monitoring" href="monitoring.jsp">Monitoring</a-->
                 <!--a href="updater.jsp">Updater</a-->
-            <div id="Footer"><p>2014</p></div>
+            <div id="Footer"><p>2015</p></div>
         </div>
         <div id="menu"><a href="api/">API</a></div>
     </body>

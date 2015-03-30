@@ -48,8 +48,8 @@ function execInstaller(id1,id2) {
     $('#Start').hide();
     Execute("20","Repository: Prepare Repository","PrepareRepository","PrepRep");
     Execute("40","Repository: Fill Default","FillDefault","FillDef");
-    Execute("60","Monitoring: Prepare Data Source","PrepareMonitoring","PrepMoni");
-    Execute("80","Monitoring: Fill Default","FillMonitoringDefault","FillMoniDef");
+    //Execute("60","Monitoring: Prepare Data Source","PrepareMonitoring","PrepMoni");
+    //Execute("80","Monitoring: Fill Default","FillMonitoringDefault","FillMoniDef");
     $('#ProgressBar').progressbar( "option", { value: 100 });
     $('#Abbrechen').hide();
     alert('Installation erfolgreich abgeschlossen. Bitte konfigurieren Sie jetzt noch die fehlenden Einstellungen. Sie werden automatisch weitergeleitet.')

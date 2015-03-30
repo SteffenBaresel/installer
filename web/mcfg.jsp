@@ -79,7 +79,7 @@
             <div id="Header">
                 <img src="public/images/SIV_AG_Logo_RGB_Web.png" />
                 <h2>WebAdmin</h2>
-                <h4>f&uuml;r kVASy&reg; System Control<font color="#666"> - Version 3 Build 2014.02</font></h4>
+                <h4>f&uuml;r C&C - Reports<font color="#666"> - Version 1 Build 2015.03</font></h4>
                 <p>Hier können Sie die Konfiguration bearbeiten und basis Aktionen durchf&uuml;hren.</p>
             </div>
             <div id="tabs">
@@ -109,7 +109,7 @@
                     </div>
                 </div>
             </div>
-            <div id="Footer"><p>2014</p></div>
+            <div id="Footer"><p>2015</p></div>
         </div>
     </body>
 </html>

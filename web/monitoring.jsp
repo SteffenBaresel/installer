@@ -56,13 +56,13 @@
             <div id="Header">
                 <img src="public/images/SIV_AG_Logo_RGB_Web.png" />
                 <h2>WebAdmin</h2>
-                <h4>f&uuml;r kVASy&reg; System Control<font color="#666"> - Version 3 Build 2014.02</font></h4>
+                <h4>f&uuml;r C&C - Reports<font color="#666"> - Version 1 Build 2015.03</font></h4>
                 <p>In diesem Men&uuml; ist es m&ouml;glich die Konfiguration des Monitoring im Backend anzupassen.<br>
                 Bitte w&auml;hlen Sie die Instanz aus, bei der Sie eine Konfigurations&auml;nderung vornehmen wollen.</p>
             </div>
                 <select id="MonitoringInstance" class="ui-input-hofo" onchange="OpenMIConfig('MonitoringInstance');"><option value="0000" selected>Bitte w&auml;hlen Sie eine Monitoring Instanz</option></select>
                 <!--a href="updater.jsp">Updater</a-->
-            <div id="Footer"><p>2014</p></div>
+            <div id="Footer"><p>2015</p></div>
         </div>
         <div id="menu"><a href="/admin">WebAdmin</a></div>
     </body>

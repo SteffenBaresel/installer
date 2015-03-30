@@ -70,13 +70,13 @@ public class Functions {
         /*
          * Class Tables
          */
-        st.execute("CREATE TABLE class_contracttypes ( CTTYID SERIAL UNIQUE, COTRSN varchar(20), COTRLN varchar(500), MACTIONS varchar(5000) )");
+        st.execute("CREATE TABLE class_contracttypes ( CTTYID SERIAL UNIQUE, COTRSN varchar(20), COTRLN varchar(500), MACTIONS varchar(5000), REPTEXT varchar(100000) )");
         st.execute("CREATE TABLE class_commenttypes ( COMTID SERIAL UNIQUE, COMTSN varchar(20), COMTLN varchar(500) )");
         st.execute("CREATE TABLE class_entrytypes ( ENID SERIAL UNIQUE, ENSN varchar(20), ENLN varchar(500) )");
         /*
          * Manged Service Tables
          */
-        st.execute("CREATE TABLE managed_service_cinfo ( CUID SERIAL UNIQUE, CUNR BIGSERIAL, CUNM varchar(10000), CUADDR varchar(1000), CUMAIL varchar(1000), CUESKMAIL varchar(1000), CUCOMM varchar(100000) )");
+        st.execute("CREATE TABLE managed_service_cinfo ( CUID SERIAL UNIQUE, CUNR BIGSERIAL, CUNM varchar(10000), CUADDR varchar(1000), CUMAIL varchar(1000), CUESKMAIL varchar(1000), CUCOMM varchar(100000), REPTEXT varchar(100000) )");
         st.execute("CREATE TABLE managed_service_cservices ( MSID BIGSERIAL UNIQUE, CUID BIGSERIAL, CCID BIGSERIAL, ENID BIGSERIAL, COMTID BIGSERIAL, UUID BIGSERIAL, COMT varchar(100000), DELAY BIGSERIAL, UTIM BIGSERIAL, ESK SERIAL )");
         st.execute("CREATE TABLE managed_service_ccontracts ( CCID BIGSERIAL UNIQUE, CUID SERIAL, CCNR BIGSERIAL, CCPRVE varchar(1000), CCPRDC varchar(1000), CTTYID SERIAL )");
         /*
@@ -98,6 +98,11 @@ public class Functions {
         st.execute("CREATE TABLE mail_group_service_mapping ( MGSID BIGSERIAL UNIQUE, MGID SERIAL, SRVID BIGSERIAL)");
         st.execute("CREATE TABLE timezone ( TZID BIGSERIAL UNIQUE, TZNA VARCHAR(10), TZDSC VARCHAR(500), DAYS SERIAL, HSTART SERIAL, MSTART SERIAL, HEND SERIAL, MEND SERIAL)");
         st.execute("CREATE TABLE timezone_mailgroup_mapping ( TMGMID BIGSERIAL UNIQUE, TZID BIGSERIAL, MGID BIGSERIAL )");
+        /*
+         * Reporting Tables
+         */
+        st.execute("CREATE TABLE config_reporting ( REPID BIGSERIAL UNIQUE, KEY varchar(100), VALTEXT varchar(100000), VALBYTE bytea )");
+        st.execute("CREATE TABLE cron_reporting ( CRONID BIGSERIAL UNIQUE, DONE BOOLEAN, STATUS VARCHAR(100), ENABLED BOOLEAN, UUID BIGSERIAL, CUID BIGSERIAL, FUNCTION VARCHAR(500), DATESTART BIGSERIAL, DATEEND BIGSERIAL, INTERVALL VARCHAR(100), LASTEXECSUCCESS BIGSERIAL, LASTEXECFAILURE BIGSERIAL, CREATED BIGSERIAL )");
         /*
          * Close Connection
          */

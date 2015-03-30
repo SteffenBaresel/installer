@@ -97,8 +97,8 @@
             <div id="Header">
                 <img src="public/images/SIV_AG_Logo_RGB_Web.png" />
                 <h2>WebAdmin - Konfigurator</h2>
-                <h4>f&uuml;r kVASy&reg; System Control<font color="#666"> - Version 3 Build 2014.02</font></h4>
-                <p>Dieser WebKonfigurator konfiguriert erweiterte Einstellungen f&uuml;r das kVASy&reg; System Control in der <br>Version 3 Build 2014.02.</p>
+                <h4>f&uuml;r C&C - Reports<font color="#666"> - Version 1 Build 2015.03</font></h4>
+                <p>Dieser WebKonfigurator konfiguriert erweiterte Einstellungen f&uuml;r das C&C - Reports in der <br>Version 1 Build 2015.03.</p>
                 <button id="MailConfig" onclick="MailConfig('MailConfig');">Mail Konfiguration</button><button id="ButtonAdminUser" onclick="AdminUser('ButtonAdminUser');">Admin User</button><button id="ButtonSysInfo" onclick="SysInfo('ButtonSysInfo');">SysInfo</button>
             </div>
             <!-- MailApi Konfiguration -->
@@ -155,9 +155,9 @@
                 <div id="SysInfoUserHeader">Bitte tragen Sie hier die Einstellungen ein. Diese Angaben m&uuml;ssen gemacht werden.</div>
                     <table>
                         <tr><td>Pfad:</td><td><input id="portalp" type="text" value="/webaccess/" onclick="javascript:eraseText('portalp');"/></td></tr>
-                        <tr><td>Release:</td><td><input id="mainv" type="text" value="3" onclick="javascript:eraseText('mainv');"/></td></tr>
+                        <tr><td>Release:</td><td><input id="mainv" type="text" value="1" onclick="javascript:eraseText('mainv');"/></td></tr>
                         <tr><td>Update:</td><td><input id="updatev" type="text" value="0" onclick="javascript:eraseText('updatev');"/></td></tr>
-                        <tr><td>Build:</td><td><input id="buildv" type="text" value="140203" onclick="javascript:eraseText('buildv');"/></td></tr>
+                        <tr><td>Build:</td><td><input id="buildv" type="text" value="1403" onclick="javascript:eraseText('buildv');"/></td></tr>
                     </table>
                 </div>
                 <button id="SysInfoStart" onclick="execSysInfoConfigure('mainv','updatev','buildv','portalp');">SysInfo Konfigurieren</button><button id="SysInfoAbbrechen" onclick="javascript:location.reload();">Abbrechen</button><button id="SysInfoZurueck" onclick="javascript:location.reload();">Zur&uuml;ck</button>
@@ -178,7 +178,7 @@
             <!-- -->
             <div id="n">0%</div><div id="ProgressBar"></div><div id="h">100%</div>
             <!-- Ende -->
-            <div id="Footer"><p>2014</p></div>
+            <div id="Footer"><p>2015</p></div>
         </div>
         <div id="menu"><a href="/admin">WebAdmin</a></div>
     </body>

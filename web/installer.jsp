@@ -71,8 +71,8 @@
             <div id="Header">
                 <img src="public/images/SIV_AG_Logo_RGB_Web.png" />
                 <h2>WebAdmin - Installer</h2>
-                <h4>f&uuml;r kVASy&reg; System Control<font color="#666"> - Version 3 Build 2014.02</font></h4>
-                <p>Dieser WebInstaller installiert Basis Einstellungen f&uuml;r das kVASy&reg; System Control in der <br>Version 3 Build 2014.02.
+                <h4>f&uuml;r C&C - Reports<font color="#666"> - Version 1 Build 2015.03</font></h4>
+                <p>Dieser WebInstaller installiert Basis Einstellungen f&uuml;r das C&C - Reports in der <br>Version 1 Build 2015.03.
                 Durch dr&uuml;cken auf den Start Button werden die notwendigen Prozesse im Hintergrund <br>gestartet und &uuml;berwacht.
                 Eventuelle Fehler werden direkt in der GUI angezeigt.</p>
                 <button id="StartF" onclick="WebInstaller('StartF');">Start</button>
@@ -85,7 +85,7 @@
                 <div id="Output"><table id="OutputTable"></table></div>
                 <button id="Start" onclick="execInstaller();">Start</button><button id="Abbrechen" onclick="javascript:location.reload();">Abbrechen</button>
             </div>
-            <div id="Footer"><p>2014</p></div>
+            <div id="Footer"><p>2015</p></div>
         </div>
         <div id="menu"><a href="/admin">WebAdmin</a></div>
     </body>
