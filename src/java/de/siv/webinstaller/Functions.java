@@ -287,6 +287,11 @@ public class Functions {
         st.execute("INSERT INTO timezone (TZID,TZNA,TZDSC,DAYS,HSTART,MSTART,HEND,MEND) VALUES (0,encode('24x7','base64'),encode('Mailing 24x7','base64'),1234567,00,00,24,60)");
         st.execute("INSERT INTO timezone_mailgroup_mapping(TMGMID,TZID,MGID) VALUES (0,0,0)");
         /*
+         * Reporting
+         */
+        st.execute("INSERT INTO config_reporting (KEY,VALTEXT) values (encode('LastPageComment','base64'),encode('Es ist noch keine Bemerkung hinterlegt.','base64'))");
+        st.execute("INSERT INTO config_reporting (KEY,VALTEXT) values (encode('LastPageContactsComment','base64'),encode('Es ist noch kein Kontakt hinterlegt.','base64'))");
+        /*
          * Close Connection
          */
         cn.close();
