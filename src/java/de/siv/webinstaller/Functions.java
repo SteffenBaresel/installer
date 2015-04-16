@@ -291,6 +291,7 @@ public class Functions {
          */
         st.execute("INSERT INTO config_reporting (KEY,VALTEXT) values (encode('LastPageComment','base64'),encode('Es ist noch keine Bemerkung hinterlegt.','base64'))");
         st.execute("INSERT INTO config_reporting (KEY,VALTEXT) values (encode('LastPageContactsComment','base64'),encode('Es ist noch kein Kontakt hinterlegt.','base64'))");
+        st.execute("insert into config_reporting (KEY,VALTEXT) values (encode('Cron','base64'),'IyBFeGFtcGxlIG9mIGpvYiBkZWZpbml0aW9uOg0KIyAuLS0tLS0tLS0tLS0tLS0tLSBzZWNvbmRzICgwIC0gNTkpDQojIHwgLi0tLS0tLS0tLS0tLS0tIG1pbnV0ZXMgKDAgLSA1OSkNCiMgfCB8IC4tLS0tLS0tLS0tLS0gaG91cnMgKDAgLSAyMykNCiMgfCB8IHwgLi0tLS0tLS0tLS0gZGF5IG9mIG1vbnRoICgxIC0gMzEpIC8gPw0KIyB8IHwgfCB8IC4tLS0tLS0tLSBtb250aCAoMSAtIDEyKSBPUiBKQU4sRkVCLE1BUixBUFIgLi4uDQojIHwgfCB8IHwgfCAuLS0tLS0tIGRheSBvZiB3ZWVrICgxIC0gNykgKFN1bmRheT0xKSBPUiBTVU4sTU9OLFRVRSAuLi4gLyA/DQojIHwgfCB8IHwgfCB8IC4tLS0tIHllYXINCiMgfCB8IHwgfCB8IHwgfA0KIyAqICogKiAqICogKiAqIGZ1bmN0aW9uIHRvIGJlIGV4ZWN1dGVkDQojDQojIENSRUFURV9SRVBPUlRbPEt1bmRlbiBOdW1tZXI+OzxBTkZBTkc+OzxFTkRFPjs8QVVTR0FCRV9EQVRFST5dICEhIEtlaW5lIExlZXJ6ZWljaGVuICEhDQojDQojIEhpbndlaXM6IGRheS1vZi1tb250aCB1bmQgZGF5LW9mLXdlZWsgZMO8cmZlbiBuaWNodCB6dXIgZ2xlaWNoZW4gWmVpdCBtaXQgKiBkZWtsYXJpZXJ0DQojIHdlcmRlbi4gRWluZXMgbXVzcyBtaW5kLiBtaXQgPyBhbmdlZ2ViZW4gd2VyZGVuLg0KIw==')");
         /*
          * Close Connection
          */
